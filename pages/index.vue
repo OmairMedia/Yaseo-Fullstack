@@ -85,6 +85,4 @@ const getFullData = () => {
 }
 
 const {data, pending, error} = await useAsyncData("get-data-for-index", () => getFullData());
-
-
 </script>

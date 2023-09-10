@@ -7,7 +7,7 @@
           <div class="col-xl-12">
             <div class="error-page__inner">
               <div class="error-page__title-box">
-                <img src="images/resource/404.jpg" alt="" />
+                <img src="/images/resource/404.jpg" alt="" />
                 <h3 class="error-page__sub-title">Page not found!</h3>
               </div>
               <p class="error-page__text">
@@ -22,8 +22,8 @@
                   </button>
                 </div>
               </form>
-              <a href="index.html" class="theme-btn btn-style-one shop-now"
-                ><span class="btn-title">Back to Home</span></a
+              <nuxt-link to="/" class="theme-btn btn-style-one shop-now"
+                ><span class="btn-title">Back to Home</span></nuxt-link
               >
             </div>
           </div>

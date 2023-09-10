@@ -4,11 +4,19 @@ import "@splidejs/vue-splide/css";
 
 const props = defineProps({
   services: Array,
+  testimonials: Array,
+  projects: Array,
+  blogs: Array,
+  clients: Array,
   settings: Object
 });
 
 const services = ref(props.services);
 const settings = ref(props.settings);
+const testimonials = ref(props.testimonials);
+const projects = ref(props.projects);
+const blogs = ref(props.blogs);
+const clients = ref(props.clients);
 </script>
 <template>
   <!-- Services Section Two -->
@@ -36,11 +44,11 @@ const settings = ref(props.settings);
             >
               <div class="inner">
                 <div class="count-box counted">
-                  <span class="count-text" data-speed="3000" :data-stop="settings.winningAwards"
-                    >{{ settings.winningAwards }}</span
+                  <span class="count-text" data-speed="3000" :data-stop="settings.winningAward"
+                    >{{ settings.winningAward }}</span
                   >+
                 </div>
-                <h6 class="counter-title">Winning Awards</h6>
+                <h6 class="counter-title">Winning Awards</h6>s
               </div>
             </div>
 

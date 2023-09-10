@@ -55,23 +55,18 @@
 
 <script setup>
 const props = defineProps({
-      blogs: Array,
+  services: Array,
+  testimonials: Array,
+  projects: Array,
+  blogs: Array,
+  clients: Array,
+  settings: Object
 });
 
-const blogs = ref(props.blogs)
-// import { onValue, ref as databaseRef } from 'firebase/database'
-// const nuxtApp = useNuxtApp()
-// const getAllBlogs = () => {
-//   blogs.value = [];
-//   const blogsRef = databaseRef(nuxtApp.$database, 'blogs')
-//   onValue(blogsRef, (snapshot) => {
-//     if(snapshot.val()) {
-//       snapshot.forEach((x) => {
-//         blogs.value.push(x.val())
-//       })
-//     }
-//   })
-// }
-
-// useAsyncData('get-blogs-for-homepage',() => getAllBlogs())
+const services = ref(props.services);
+const settings = ref(props.settings);
+const testimonials = ref(props.testimonials);
+const projects = ref(props.projects);
+const blogs = ref(props.blogs);
+const clients = ref(props.clients);
 </script>

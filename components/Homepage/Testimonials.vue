@@ -1,33 +1,45 @@
 <script setup>
 const props = defineProps({
-      settings: Object,
+  services: Array,
+  testimonials: Array,
+  projects: Array,
+  blogs: Array,
+  clients: Array,
+  settings: Object
 });
+
+const services = ref(props.services);
+const settings = ref(props.settings);
+const testimonials = ref(props.testimonials);
+const projects = ref(props.projects);
+const blogs = ref(props.blogs);
+const clients = ref(props.clients);
 
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 
-const testimonials = ref([
-  {
-    name: 'Martin Andre',
-    designation: 'Owner Ferndale Apartments',
-    text: 'This digital agency exceeded my expectations with their creative designs and exceptional customer service.'
-  },
-  {
-    name: 'Steve Hedge',
-    designation: 'Owner Joe Audio',
-    text: 'I saw immediate results after hiring this agency for my SEO needs. Highly recommend.'
-  },
-  {
-    name: 'Bernard Peters',
-    designation: 'CEO Housewaves',
-    text: 'The social media content this agency created for me was amazing! They really understood my brand and audience.'
-  },
-  {
-    name: 'Sophia Simpson',
-    designation: 'Owner Careful Choices',
-    text: "Thanks to Yaseo's website redesign, my online sales have increased significantly. Couldn't be happier with the outcome."
-  }
-])
+// const testimonials = ref([
+//   {
+//     name: 'Martin Andre',
+//     designation: 'Owner Ferndale Apartments',
+//     text: 'This digital agency exceeded my expectations with their creative designs and exceptional customer service.'
+//   },
+//   {
+//     name: 'Steve Hedge',
+//     designation: 'Owner Joe Audio',
+//     text: 'I saw immediate results after hiring this agency for my SEO needs. Highly recommend.'
+//   },
+//   {
+//     name: 'Bernard Peters',
+//     designation: 'CEO Housewaves',
+//     text: 'The social media content this agency created for me was amazing! They really understood my brand and audience.'
+//   },
+//   {
+//     name: 'Sophia Simpson',
+//     designation: 'Owner Careful Choices',
+//     text: "Thanks to Yaseo's website redesign, my online sales have increased significantly. Couldn't be happier with the outcome."
+//   }
+// ])
 </script>
 <template>
      <!-- Testimonial Section Two -->

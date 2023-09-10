@@ -1,22 +1,22 @@
 <template>
   <div>
-    <HomepageBanner/>
-    <HomepageTagline/>
-    <HomepageProjects/>
-    <HomepageServiceShowcase/>
-    <HomepageFunFacts/>
-    <HomepageWhatWeOffer :services="services"/>
-    <HomepageFsb/>
-    <HomepageMicrosoft/>
-    <HomepageTestimonials/>
-    <HomepageProjects/>
-    <HomepageServicesList/>
-    <HomepageVideoSection2/>
-    <HomepageContact :settings="settings"/>
-    <HomepageCallToAction :settings="settings"/>
-    <LazyHomepageBlogs :blogs="blogs"/>
-    <HomepageClients/>
-    <HomepageMapSection :settings="settings"/>
+    <HomepageBanner :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageTagline :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageServiceShowcase :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageFunFacts :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageWhatWeOffer :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageFsb :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageMicrosoft :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageTestimonials :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageServicesList :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageVideoSection2 :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageContact :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageCallToAction :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <LazyHomepageBlogs :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageClients :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageMapSection :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
   </div>
 </template>
 
@@ -36,33 +36,16 @@ useSeoMeta({
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const settings = ref({})
+const unfilteredblogs = ref([])
 const blogs = ref([])
 const unfilteredServices = ref([])
 const services = ref([])
+const unfilteredClients = ref([])
+const clients = ref([])
+const unfilteredProjects = ref([])
+const projects = ref([])
+const testimonials = ref([])
 
-const getServices = () => {
-  const allDataRef = databaseRef(nuxtApp.$database, "/services");
-  onValue(allDataRef, (snapshot) => {
-    if (snapshot.val()) {
-      snapshot.forEach((x) => {
-        services.value.push(x.val())
-      })
-    }
-  });
-}
-const getSettings = async () => {
-  const allDataRef = databaseRef(nuxtApp.$database, "/settings");
-  onValue(allDataRef, (snapshot) => {
-    if (snapshot.val()) {
-      const data = snapshot.val();
-      settings.value = data;
-    }
-  });
-};
-const getAllData = async () => {
-  await getServices()
-  await getSettings()
-};
 const getFullData = () => {
   const allDataRef = databaseRef(nuxtApp.$database, "/");
   onValue(allDataRef, (snapshot) => {
@@ -78,10 +61,30 @@ const getFullData = () => {
               services.value.push(data[key][serviceKey])
           }
         }
+        if(key == 'projects') {
+          unfilteredProjects.value = data[key];
+          for(let serviceKey in unfilteredProjects.value) {
+              projects.value.push(unfilteredProjects.value[serviceKey])
+          }
+        }
+        if(key == 'clients') {
+          unfilteredClients.value = data[key];
+          for(let serviceKey in unfilteredClients.value) {
+            clients.value.push(unfilteredClients.value[serviceKey])
+          }
+        }
+        if(key == 'blogs') {
+          unfilteredblogs.value = data[key];
+          for(let serviceKey in unfilteredblogs.value) {
+            blogs.value.push(unfilteredblogs.value[serviceKey])
+          }
+        }
       }
     }
   });
 }
 
 const {data, pending, error} = await useAsyncData("get-data-for-index", () => getFullData());
+
+
 </script>

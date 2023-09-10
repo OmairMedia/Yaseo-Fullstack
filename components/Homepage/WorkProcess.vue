@@ -1,3 +1,20 @@
+<script setup>
+const props = defineProps({
+  services: Array,
+  testimonials: Array,
+  projects: Array,
+  blogs: Array,
+  clients: Array,
+  settings: Object
+});
+
+const services = ref(props.services);
+const settings = ref(props.settings);
+const testimonials = ref(props.testimonials);
+const projects = ref(props.projects);
+const blogs = ref(props.blogs);
+const clients = ref(props.clients);
+</script>
 <template>
     <!-- Process Section -->
     <section class="process-section">

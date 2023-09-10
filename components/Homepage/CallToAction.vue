@@ -26,9 +26,19 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
-      settings: Object,
+  services: Array,
+  testimonials: Array,
+  projects: Array,
+  blogs: Array,
+  clients: Array,
+  settings: Object
 });
-const settings = ref(props.settings)
+
+const services = ref(props.services);
+const settings = ref(props.settings);
+const testimonials = ref(props.testimonials);
+const projects = ref(props.projects);
+const blogs = ref(props.blogs);
+const clients = ref(props.clients);
 </script>

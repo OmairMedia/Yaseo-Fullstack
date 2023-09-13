@@ -143,28 +143,31 @@ const projects = ref([
   }
 ]);
 
-const getAllData = async () => {
-  const allDataRef = databaseRef(nuxtApp.$database, "/");
-  onValue(allDataRef, (snapshot) => {
-    if (snapshot.val()) {
-      const data = snapshot.val();
-      for (let key in data) {
-        if (key == "settings") {
-          settings.value = data[key];
+const getFullData = () => {
+  try {
+    const allDataRef = databaseRef(nuxtApp.$database, "/");
+    onValue(allDataRef, (snapshot) => {
+      if (snapshot.val()) {
+        const data = snapshot.val();
+        for(let key in data) {
+          if(key == 'settings') {
+            settings.value = data[key]
+          }
+          
         }
       }
-    }
-  });
-
-  console.log('settings -> ',settings.value)
-};
+    })
+  } catch (err) {
+    console.log('err -> ',err)
+  }
+}
 
 // const { data, pending, error } = await useAsyncData("get-data-for-footer", () =>
 //   getAllData()
 // );
 
 onMounted(() => {
-  getAllData()
+  getFullData()
 })
 
 </script>

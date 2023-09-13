@@ -5,7 +5,8 @@ const props = defineProps({
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
+  section1: Object
 });
 
 const services = ref(props.services);
@@ -25,13 +26,12 @@ const clients = ref(props.clients);
             <div class="feature-block-two col-lg-4 col-md-12 col-sm-12">
               <div class="inner-box overlay-anim">
                 <div class="content">
-                  <span class="icon"><i class="flaticon-trophy"></i></span>
+                  <span class="icon"><i :class="`flaticon-${section1.box_1_icon}`"></i></span>
                   <h6 class="title text-white">
-                    200+ resources sitting on bench
+                    {{ section1.box_1_title }}
                   </h6>
                   <div class="text">
-                    Well recognized for our outstanding work and commitment to
-                    excellence in the industry.
+                    {{ section1.box_1_description }}
                   </div>
                 </div>
               </div>
@@ -41,11 +41,10 @@ const clients = ref(props.clients);
             <div class="feature-block-two col-lg-4 col-md-12 col-sm-12">
               <div class="inner-box overlay-anim">
                 <div class="content">
-                  <span class="icon"><i class="flaticon-medal"></i></span>
-                  <h6 class="title">Quality work</h6>
+                  <span class="icon"><i :class="`flaticon-${section1.box_2_icon}`"></i></span>
+                  <h6 class="title">{{ section1.box_2_title }}</h6>
                   <div class="text">
-                    We understand that quality work is essential to the success
-                    of any business.
+                    {{ section1.box_2_description }}
                   </div>
                 </div>
               </div>
@@ -55,14 +54,10 @@ const clients = ref(props.clients);
             <div class="feature-block-two col-lg-4 col-md-12 col-sm-12">
               <div class="inner-box overlay-anim">
                 <div class="content">
-                  <span class="icon"
-                    ><i class="flaticon-satisfaction"></i
-                  ></span>
-                  <h6 class="title">Satisfaction guarantee</h6>
+                  <span class="icon"><i :class="`flaticon-${section1.box_3_icon}`"></i></span>
+                  <h6 class="title">{{ section1.box_3_title }}</h6>
                   <div class="text">
-                    We are committed to delivering the highest level of service
-                    and ensuring that our clients are completely satisfied with
-                    our work.
+                    {{ section1.box_3_description }}
                   </div>
                 </div>
               </div>

@@ -3,7 +3,7 @@
     <Header/>
     <Loader/>
       <slot />
-    <Footer/>
+      <Footer/>
     <ScrollToTop/>
   </div>
 </template>

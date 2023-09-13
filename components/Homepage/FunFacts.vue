@@ -47,7 +47,7 @@ const clients = ref(props.clients);
               <i class="icon flaticon-campaign"></i>
               <div class="count-box counted">
                 <span class="count-text" data-speed="3000" data-stop="960"
-                  >500</span
+                  >{{ settings.projectsCompleted || 500 }}</span
                 >
               </div>
               <h6 class="counter-title">Projects completed</h6>
@@ -68,7 +68,7 @@ const clients = ref(props.clients);
               <i class="icon flaticon-reputation"></i>
               <div class="count-box counted">
                 <span class="count-text" data-speed="3000" data-stop="32"
-                  >15</span
+                  >{{ settings.activeClients || 15 }}</span
                 >
               </div>
               <h6 class="counter-title">Active clients</h6>
@@ -89,7 +89,7 @@ const clients = ref(props.clients);
               <i class="icon flaticon-coffee"></i>
               <div class="count-box counted">
                 <span class="count-text" data-speed="3000" data-stop="89"
-                  >198</span
+                  >{{ settings.cupOfCoffee || 198 }}</span
                 >
               </div>
               <h6 class="counter-title">Cups of coffee</h6>
@@ -110,7 +110,7 @@ const clients = ref(props.clients);
               <i class="icon flaticon-social-campaign"></i>
               <div class="count-box counted">
                 <span class="count-text" data-speed="3000" data-stop="763"
-                  >500</span
+                  >{{ settings.satisfiedClients || 500}}</span
                 >
               </div>
               <h6 class="counter-title">Satisfied customers</h6>

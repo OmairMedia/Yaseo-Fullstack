@@ -8,7 +8,8 @@ const props = defineProps({
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
+  video: Object
 });
 
 const services = ref(props.services);
@@ -44,11 +45,11 @@ const clients = ref(props.clients);
             >
               <div class="inner">
                 <div class="count-box counted">
-                  <span class="count-text" data-speed="3000" :data-stop="settings.winningAward"
-                    >{{ settings.winningAward }}</span
+                  <span class="count-text" data-speed="3000" :data-stop="settings.winningAward || 15"
+                    >{{ settings.winningAward || 15 }}</span
                   >+
                 </div>
-                <h6 class="counter-title">Winning Awards</h6>s
+                <h6 class="counter-title">Winning Awards</h6>
               </div>
             </div>
 
@@ -56,8 +57,8 @@ const clients = ref(props.clients);
             <div class="counter-block-three" data-wow-delay="300ms">
               <div class="inner">
                 <div class="count-box counted">
-                  <span class="count-text" data-speed="3000" :data-stop="settings.teamMembers"
-                    >{{ settings.teamMembers }}</span
+                  <span class="count-text" data-speed="3000" :data-stop="settings.teamMembers || 15"
+                    >{{ settings.teamMembers || 15 }}</span
                   >+
                 </div>
                 <h6 class="counter-title">Team Members</h6>
@@ -70,7 +71,7 @@ const clients = ref(props.clients);
               <img src="/images/resource/image-4.jpg" alt="" />
             </figure>
             <a
-              href="/videos/home-1.mp4"
+              :href="video.link"
               class="play-btn"
               data-fancybox="gallery"
               data-caption=""

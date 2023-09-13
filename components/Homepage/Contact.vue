@@ -14,6 +14,17 @@ const testimonials = ref(props.testimonials);
 const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
+
+
+const name = ref("")
+const email = ref("")
+const phone = ref("")
+const subject = ref("")
+const message = ref("")
+const isLoading = ref(false)
+const submitForm = () => {
+
+}
 </script>
 <template>
   <!-- Contact Section Two -->
@@ -60,6 +71,7 @@ const clients = ref(props.clients);
                       id="name"
                       name="full_name"
                       placeholder="Your Name"
+                      v-model="name"
                       required
                     />
                   </div>
@@ -70,6 +82,7 @@ const clients = ref(props.clients);
                       id="email"
                       name="Email"
                       placeholder="Email Address"
+                      v-model="email"
                       required
                     />
                   </div>
@@ -79,6 +92,7 @@ const clients = ref(props.clients);
                       type="text"
                       id="phone"
                       name="Phone"
+                      v-model="phone"
                       placeholder="Contact Number"
                       required
                     />
@@ -89,6 +103,7 @@ const clients = ref(props.clients);
                       type="text"
                       id="subject"
                       name="Subject"
+                      v-model="subject"
                       placeholder="Subject"
                       required
                     />
@@ -99,16 +114,18 @@ const clients = ref(props.clients);
                       name="message"
                       id="message"
                       placeholder="Write a Message"
+                      v-model="message"
                       required
                     ></textarea>
                   </div>
 
-                  <!-- <div class="form-group col-lg-12">
+                  <div class="form-group col-lg-12">
                         <button
                           id="submit-button"
                           class="theme-btn btn-style-one"
                           type="button"
                           name="submit-form"
+                          @click="submitForm"
                         >
                           <span class="btn-title">Send a message</span>
                         </button>
@@ -116,7 +133,7 @@ const clients = ref(props.clients);
 
                       <div id="form-result" class="alert alert-success" role="alert" style="display: none;">
                           
-                      </div> -->
+                      </div>
                 </div>
               </form>
             </div>

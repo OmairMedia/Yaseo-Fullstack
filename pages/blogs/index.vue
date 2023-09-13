@@ -4,7 +4,7 @@
       <section
         class="page-title"
         style="
-          background-image: url(https://yaseo.co.uk/images/background/page-title.jpg);
+          background-image: url(/images/background/page-title.jpg);
         "
       >
         <div class="auto-container">

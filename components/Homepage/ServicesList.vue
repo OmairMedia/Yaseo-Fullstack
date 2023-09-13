@@ -40,10 +40,10 @@ const clients = ref(props.clients);
                   that truly work for your business
                 </div>
               </div>
-              <a
-                href="https://yaseo.co.uk/digital-services"
+              <nuxt-link
+                to="/digital-services"
                 class="theme-btn btn-style-one"
-                ><span class="btn-title">Explore now</span></a
+                ><span class="btn-title">Explore now</span></nuxt-link
               >
             </div>
           </div>
@@ -51,18 +51,18 @@ const clients = ref(props.clients);
           <div class="features-column col-xl-6 col-lg-12 col-md-12">
             <div class="row">
               <!-- Feature Block Three -->
-              <div class="feature-block-three col-lg-6 col-md-6">
+              <div class="feature-block-three col-lg-6 col-md-6" v-for="(service,index) in services" :key="index">
                 <div class="inner-box">
                   <div class="content">
                     <span class="icon"><i class="fa fa-copyright"></i></span>
                     <h6 class="title">
-                      <a href="https://yaseo.co.uk/branding">Branding</a>
+                      <nuxt-link :to="service.slug">{{ service.name }}</nuxt-link>
                     </h6>
                   </div>
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+<!-- 
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -76,7 +76,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -88,7 +88,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -102,7 +102,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -114,7 +114,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -128,7 +128,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -144,7 +144,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
 
-              <!-- Feature Block Three -->
+
               <div class="feature-block-three col-lg-6 col-md-6">
                 <div class="inner-box">
                   <div class="content">
@@ -156,7 +156,7 @@ const clients = ref(props.clients);
                     </h6>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

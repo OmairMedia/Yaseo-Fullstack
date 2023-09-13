@@ -5,7 +5,8 @@ const props = defineProps({
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
+  video: Object
 });
 
 const services = ref(props.services);
@@ -14,6 +15,8 @@ const testimonials = ref(props.testimonials);
 const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
+const video = ref(props.video);
+
 </script>
 <template>
   <!-- Video Section Two -->
@@ -23,7 +26,7 @@ const clients = ref(props.clients);
         <figure class="image">
           <img src="/images/resource/video.jpg" alt="" />
           <a
-            href="/videos/home-1.mp4"
+            :href="video.link"
             class="play-now"
             data-fancybox="gallery"
             data-caption=""
@@ -33,7 +36,7 @@ const clients = ref(props.clients);
         </figure>
 
         <div class="info-box">
-          <h2 class="title">500+</h2>
+          <h2 class="title">{{settings.projectsCompleted || 500}}+</h2>
           <div class="text">
             Projects have been<br />
             completed

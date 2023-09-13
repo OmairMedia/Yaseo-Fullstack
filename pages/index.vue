@@ -1,17 +1,18 @@
 <template>
   <div>
-    <HomepageBanner :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
-    <HomepageTagline :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
-    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageBanner :video="video" :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageTagline  :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageFeatures :section1="section1" :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :categories="categories" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageServiceShowcase :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageFunFacts :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
-    <HomepageWhatWeOffer :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageWhatWeOffer :video="video" :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageFsb :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageMicrosoft :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageTestimonials :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
-    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageProjects :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :categories="categories" :blogs="blogs" :clients="clients"/>
     <HomepageServicesList :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
-    <HomepageVideoSection2 :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
+    <HomepageVideoSection2 :video="video" :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageContact :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <HomepageCallToAction :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
     <LazyHomepageBlogs :settings="settings" :services="services" :testimonials="testimonials" :projects="projects" :blogs="blogs" :clients="clients"/>
@@ -44,44 +45,71 @@ const unfilteredClients = ref([])
 const clients = ref([])
 const unfilteredProjects = ref([])
 const projects = ref([])
+const unfilteredTestimonials = ref([])
 const testimonials = ref([])
+const unfilteredVideo = ref([])
+const video = ref([])
+const categories = ref([]) 
+const unfilteredCategories = ref([])
+const cases = ref([])
+const unfilteredCases = ref([])
+const section1 = ref({})
 
 const getFullData = () => {
-  const allDataRef = databaseRef(nuxtApp.$database, "/");
-  onValue(allDataRef, (snapshot) => {
-    if (snapshot.val()) {
-      const data = snapshot.val();
-      for(let key in data) {
-        if(key == 'settings') {
-          settings.value = data[key]
-        }
-        if(key == 'services') {
-          unfilteredServices.value = data[key];
-          for(let serviceKey in data[key]) {
-              services.value.push(data[key][serviceKey])
+  try {
+    const allDataRef = databaseRef(nuxtApp.$database, "/");
+    onValue(allDataRef, (snapshot) => {
+      if (snapshot.val()) {
+        const data = snapshot.val();
+        for(let key in data) {
+          if(key == 'settings') {
+            settings.value = data[key]
           }
-        }
-        if(key == 'projects') {
-          unfilteredProjects.value = data[key];
-          for(let serviceKey in unfilteredProjects.value) {
+          if(key == 'services') {
+            unfilteredServices.value = data[key];
+            for(let serviceKey in data[key]) {
+                services.value.push(data[key][serviceKey])
+            }
+          }
+          if(key == 'clients') {
+            unfilteredClients.value = data[key];
+            for(let serviceKey in unfilteredClients.value) {
+              clients.value.push(unfilteredClients.value[serviceKey])
+            }
+          }
+          if(key == 'blogs') {
+            unfilteredblogs.value = data[key];
+            for(let serviceKey in unfilteredblogs.value) {
+              blogs.value.push(unfilteredblogs.value[serviceKey])
+            }
+          }
+          if(key == 'categories') {
+            unfilteredCategories.value = data[key];
+            for(let serviceKey in unfilteredCategories.value) {
+              categories.value.push(unfilteredCategories.value[serviceKey])
+            }
+          }
+          if(key == 'homepage') {
+            unfilteredTestimonials.value = data[key].testimonials;
+            video.value = data[key].video;
+            section1.value = data[key].section1;
+            for(let serviceKey in unfilteredTestimonials.value) {
+              testimonials.value.push(unfilteredTestimonials.value[serviceKey])
+            }
+          }
+          if(key == 'cases') {
+            unfilteredProjects.value = data[key];
+            for(let serviceKey in unfilteredProjects.value) {
               projects.value.push(unfilteredProjects.value[serviceKey])
-          }
-        }
-        if(key == 'clients') {
-          unfilteredClients.value = data[key];
-          for(let serviceKey in unfilteredClients.value) {
-            clients.value.push(unfilteredClients.value[serviceKey])
-          }
-        }
-        if(key == 'blogs') {
-          unfilteredblogs.value = data[key];
-          for(let serviceKey in unfilteredblogs.value) {
-            blogs.value.push(unfilteredblogs.value[serviceKey])
+            }
           }
         }
       }
-    }
-  });
+    })
+  } catch (err) {
+    console.log('err -> ',err)
+  }
+  
 }
 
 const {data, pending, error} = await useAsyncData("get-data-for-index", () => getFullData());

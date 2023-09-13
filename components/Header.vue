@@ -1,6 +1,6 @@
 <template>
      <!-- Main Header-->
-      <header class="main-header header-style-two">
+      <header class="main-header header-style-two" v-if="settings">
           <!-- Header Top -->
           <div class="header-top">
             <div class="inner-container">
@@ -236,7 +236,7 @@ const getFullData = () => {
             for(let serviceKey in data[key]) {
               services.value.push(data[key][serviceKey])
             }
-            console.log('services.value -> ',services.value);
+           
           }
         }
       }

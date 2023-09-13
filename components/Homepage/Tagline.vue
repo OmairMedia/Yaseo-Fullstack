@@ -16,7 +16,8 @@ const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 </script>
 <template>
-     <!-- Tagline -->
+     <div class="">
+      <!-- Tagline -->
      <section class="services-section">
       <div class="auto-container">
         <div class="sec-title text-center">
@@ -27,4 +28,5 @@ const clients = ref(props.clients);
         </div>
       </div>
     </section>
+     </div>
 </template>

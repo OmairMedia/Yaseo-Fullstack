@@ -9,7 +9,7 @@
 
 
         <Splide :options="{ rewind: true, perPage: 4, pagination:false }">
-          <SplideSlide v-for="(item,index) in projects" :key="index">
+          <SplideSlide v-for="(item,index) in categories" :key="index">
               <div class="project-block">
                 <div class="inner-box">
                   <div class="image-box">
@@ -23,10 +23,10 @@
                       /></nuxt-link>
                     </figure>
                     <div class="info-box">
-                      <nuxt-link :to="item.category" class="read-more"
+                      <nuxt-link :to="item.slug" class="read-more"
                         ><i class="fa fa-long-arrow-alt-right"></i
                       ></nuxt-link>
-                      <span class="cat">{{ item.category }}</span>
+                      <span class="cat">Category</span>
                       <h6 class="title">
                         <nuxt-link :to="`case-studies/${item.slug}`"
                           >{{ item.name }}</nuxt-link
@@ -47,22 +47,14 @@
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 
-// const projects = ref([
-//   {
-//     name: 'Mowana',
-//     slug: 'mowana',
-//     image: '/images/cases/mowana/logo-10.jpg',
-//     category: 'branding'
-//   }
-// ])
-
 const props = defineProps({
   services: Array,
   testimonials: Array,
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
+  categories: Array
 });
 
 const services = ref(props.services);
@@ -71,4 +63,5 @@ const testimonials = ref(props.testimonials);
 const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
+const categories = ref(props.categories);
 </script>

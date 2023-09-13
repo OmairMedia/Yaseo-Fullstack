@@ -4,14 +4,14 @@
     <section
       class="page-title"
       style="
-        background-image: url(https://yaseo.co.uk/images/background/page-title.jpg);
+        background-image: url(/images/background/page-title.jpg);
       "
     >
       <div class="auto-container">
         <div class="title-outer">
           <h1 class="title">Case Studies</h1>
           <ul class="page-breadcrumb">
-            <li><a href="https://yaseo.co.uk">Home</a></li>
+            <li><nuxt-link to="/">Home</nuxt-link></li>
             <li>Case Studies</li>
           </ul>
         </div>
@@ -29,21 +29,22 @@
               <div class="inner-box">
                 <div class="image-box">
                   <figure class="image">
-                    <a href="https://yaseo.co.uk/case-study/mowana"
-                      ><img
-                        src="https://yaseo.co.uk/images/cases/mowana/logo-10.jpg"
+                    <nuxt-link :to="category.slug">
+                      <img
+                        :src="category.image"
                         alt=""
-                    /></a>
+                    />
+                  </nuxt-link>
                   </figure>
                   <div class="info-box">
-                    <a
-                      href="https://yaseo.co.uk/case-study/mowana"
+                    <nuxt-link
+                      :to="category.slug"
                       class="read-more"
                       ><i class="fa fa-long-arrow-alt-right"></i
-                    ></a>
-                    <span class="cat">Branding</span>
+                    ></nuxt-link>
+                    <span class="cat">Category</span>
                     <h6 class="title">
-                      <a href="https://yaseo.co.uk/case-study/mowana">{{ category.name }}</a>
+                      <nuxt-link :to="category.slug">{{ category.name }}</nuxt-link>
                     </h6>
                   </div>
                 </div>

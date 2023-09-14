@@ -5,7 +5,8 @@ const props = defineProps({
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
+  clients: Array
 });
 
 const services = ref(props.services);
@@ -64,7 +65,7 @@ const items = ref([
       <!-- Sponsors Outer -->
       <div class="sponsors-outer">
         <Splide :options="{ rewind: true, perPage: 3, pagination:false }">
-          <SplideSlide v-for="(item,index) in items" :key="index">
+          <SplideSlide v-for="(item,index) in clients" :key="index">
             <li class="slide-item">
               <a :href="item.link"
                 ><img
@@ -74,7 +75,6 @@ const items = ref([
             </li>
           </SplideSlide>
         </Splide>
-      
       </div>
     </div>
   </section>

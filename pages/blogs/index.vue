@@ -60,6 +60,26 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <nav aria-label="Page navigation" v-if="last_page > 1">
+                <ul class="pagination pagination-lg">
+                  <li class="page-item">
+                    <button @click="nextPage" class="page-link" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </button>
+                  </li>
+                  <li class="page-item"><button class="page-link" v-for="(page,index) in last_page" @click="nextPageSpecific(page)" :key="index">{{ page }}</button></li>
+                  <li class="page-item">
+                    <button @click="previousPage" class="page-link" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+              <p>{{ from }} - {{ to }} of {{ total }}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -74,19 +94,50 @@
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const blogs = ref([]);
+let total = ref(0);
+let page = ref(1);
+let per_page = ref(10)
+let to = ref(1);
+let from = ref(1);
+let current_page = ref(1)
+let last_page = ref(1)
+
 const getAllBlogs = () => {
-  blogs.value = [];
-  const blogsRef = databaseRef(nuxtApp.$database, "/blogs");
-  onValue(blogsRef, (snapshot) => {
-    if (snapshot.val()) {
-      snapshot.forEach((x) => {
-        blogs.value.push(x.val());
-      });
-    }
-  });
+    blogs.value = [];
+    const blogsRef = databaseRef(nuxtApp.$database, "/blogs");
+    onValue(blogsRef, (snapshot) => {
+      if (snapshot.val()) {
+        snapshot.forEach((x) => {
+          blogs.value.push(x.val());
+        });
+        total = blogs.value.length
+        from.value = (page.value - 1) * per_page.value + 1;
+        to.value = from.value + per_page.value <= total ? from.value + per_page.value - 1 : length;
+        current_page.value = page.value;
+        last_page.value = total % per_page.value == 0 ? total / per_page.value : Math.floor(total / per_page.value) + 1;
+        // Sort if sort is passed
+        blogs.value.sort((a, b) =>
+            a['date'] > b['date'] ? 1 : b['date'] > a['date'] ? -1 : 0
+        );
+
+        blogs.value = blogs.value.slice(from.value - 1, to.value);
+      }
+    });
+  
+   
+
+    // if (search) {
+    //   var lowSearch = search.toLowerCase();
+    //   users = users.filter((obj) => {
+    //     console.log(obj);
+    //     return Object.values(obj).some((val) =>
+    //       String(val).toLowerCase().includes(lowSearch)
+    //     );
+    //   });
+    // }
+
 };
 const { pending, error} = await useAsyncData("get-all-blogs", () => getAllBlogs());
-
 
 useSeoMeta({
   title: "Blog | Yaseo Business Blogs | Yaseo",
@@ -101,4 +152,17 @@ useSeoMeta({
   twitterDescription:
     "Yaseo blogs provides visitors on help Branding, logo design and branding ideas UX and UI blog. SEO tips and ideas are beneficial for visitors",
 });
+
+const nextPage = () => {
+  page.value = page.value + 1;
+  getAllBlogs()
+}
+const nextPageSpecific = (page) => {
+  page.value = page.value + 1;
+  getAllBlogs()
+}
+const previousPage = () => {
+  page.value = page.value - 1;
+  getAllBlogs()
+}
 </script>

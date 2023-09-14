@@ -29,7 +29,7 @@
               <div class="inner-box">
                 <div class="image-box">
                   <figure class="image">
-                    <nuxt-link :to="category.slug">
+                    <nuxt-link :to="`case-studies/${category.name}`">
                       <img
                         :src="category.image"
                         alt=""
@@ -38,7 +38,7 @@
                   </figure>
                   <div class="info-box">
                     <nuxt-link
-                      :to="category.slug"
+                      :to="`case-studies/${category.name}`"
                       class="read-more"
                       ><i class="fa fa-long-arrow-alt-right"></i
                     ></nuxt-link>

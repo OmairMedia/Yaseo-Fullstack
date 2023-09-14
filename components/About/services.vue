@@ -18,7 +18,7 @@
           >
             <div class="inner-box">
               <div class="icon-box">
-                <i class="icon flaticon-color-sample"></i>
+                <i :class="`icon ${sv.icon}`"></i>
               </div>
               <h5 class="title">
                 <nuxt-link :to="sv.slug">{{ sv.name }}</nuxt-link>
@@ -49,24 +49,10 @@
 </template>
 
 <script setup>
-import { onValue, ref as databaseRef } from "firebase/database";
-const nuxtApp = useNuxtApp();
-const services = ref([]);
+const props = defineProps({
+  services: Array,
+  settings: Object,
+});
 
-const getServices = () => {
-  services.value = [];
-  const allDataRef = databaseRef(nuxtApp.$database, "/services");
-  onValue(allDataRef, (snapshot) => {
-    if (snapshot.val()) {
-      snapshot.forEach((x) => {
-        services.value.push(x.val());
-      });
-    }
-  });
-};
-
-const { data, pending, error } = await useAsyncData(
-  "get-data-for-about-services",
-  () => getServices()
-);
+const services = ref(props.services);
 </script>

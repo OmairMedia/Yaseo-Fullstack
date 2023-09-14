@@ -734,79 +734,79 @@ li {
 }
 
 .bg-pattern-1 {
-  background-image: url(../images/icons/pattern-1.jpg);
+  background-image: url(/images/icons/pattern-1.jpg);
 }
 
 .bg-pattern-2 {
-  background-image: url(../images/icons/pattern-2.jpg);
+  background-image: url(/images/icons/pattern-2.jpg);
 }
 
 .bg-pattern-3 {
-  background-image: url(../images/icons/pattern-3.jpg);
+  background-image: url(/images/icons/pattern-3.jpg);
 }
 
 .bg-pattern-4 {
-  background-image: url(../images/icons/pattern-4.jpg);
+  background-image: url(/images/icons/pattern-4.jpg);
 }
 
 .bg-pattern-5 {
-  background-image: url(../images/icons/pattern-5.jpg);
+  background-image: url(/images/icons/pattern-5.jpg);
 }
 
 .bg-pattern-6 {
-  background-image: url(../images/icons/pattern-6.jpg);
+  background-image: url(/images/icons/pattern-6.jpg);
 }
 
 .bg-pattern-7 {
-  background-image: url(../images/icons/pattern-7.jpg);
+  background-image: url(/images/icons/pattern-7.jpg);
 }
 
 .bg-pattern-8 {
-  background-image: url(../images/icons/pattern-8.jpg);
+  background-image: url(/images/icons/pattern-8.jpg);
 }
 
 .bg-pattern-9 {
-  background-image: url(../images/icons/pattern-9.jpg);
+  background-image: url(/images/icons/pattern-9.jpg);
 }
 
 .bg-pattern-10 {
-  background-image: url(../images/icons/pattern-10.jpg);
+  background-image: url(/images/icons/pattern-10.jpg);
 }
 
 .bg-pattern-11 {
-  background-image: url(../images/icons/pattern-11.jpg);
+  background-image: url(/images/icons/pattern-11.jpg);
 }
 
 .bg-pattern-12 {
-  background-image: url(../images/icons/pattern-12.jpg);
+  background-image: url(/images/icons/pattern-12.jpg);
 }
 
 .bg-pattern-13 {
-  background-image: url(../images/icons/pattern-13.jpg);
+  background-image: url(/images/icons/pattern-13.jpg);
 }
 
 .bg-pattern-14 {
-  background-image: url(../images/icons/pattern-14.jpg);
+  background-image: url(/images/icons/pattern-14.jpg);
 }
 
 .bg-pattern-15 {
-  background-image: url(../images/icons/pattern-15.jpg);
+  background-image: url(/images/icons/pattern-15.jpg);
 }
 
 .bg-pattern-16 {
-  background-image: url(../images/icons/pattern-16.jpg);
+  background-image: url(/images/icons/pattern-16.jpg);
 }
 
 .bg-pattern-17 {
-  background-image: url(../images/icons/pattern-17.jpg);
+  background-image: url(/images/icons/pattern-17.jpg);
 }
 
 .bg-pattern-18 {
-  background-image: url(../images/icons/pattern-18.jpg);
+  background-image: url(/images/icons/pattern-18.jpg);
 }
 
 .bg-pattern-19 {
-  background-image: url(../images/icons/pattern-19.jpg);
+  background-image: url(/images/icons/pattern-19.jpg);
 }
 
 /*=======================
@@ -832,7 +832,7 @@ li {
   margin-top: -60px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../images/icons/preloader.gif);
+  background-image: url(/images/icons/preloader.gif);
   background-size: 70px;
   content: "";
 }
@@ -1577,7 +1577,7 @@ Scroll To Top style
 .icon-quote {
   width: 64px;
   height: 46px;
-  background-image: url(../images/icons/icon-quote.png);
+  background-image: url(/images/icons/icon-quote.png);
 }
 
 .bounce-y {
@@ -2974,7 +2974,7 @@ Section Title
 }
 
 .tp-dottedoverlay {
-  background-image: url(../images/main-slider/bg-pattern.jpg);
+  background-image: url(/images/main-slider/bg-pattern.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -3019,7 +3019,7 @@ Section Title
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(../images/main-slider/bg-pattern-3.png);
+  background-image: url(/images/main-slider/bg-pattern-3.png);
   background-color: var(--bg-theme-color1);
   opacity: 0.6;
   content: "";
@@ -3341,7 +3341,7 @@ Section Title
   width: 50%;
   background-repeat: no-repeat;
   background-position: center right;
-  background-image: url(../images/icons/shape.png);
+  background-image: url(/images/icons/shape.png);
   content: "";
 }
 
@@ -3423,7 +3423,7 @@ Section Title
   top: 70px;
   width: 451px;
   height: 381px;
-  background-image: url(../images/icons/pattern-5.png);
+  background-image: url(/images/icons/pattern-5.png);
   content: "";
 }
 .about-section .image-column .image-1 {
@@ -3580,7 +3580,7 @@ Section Title
   top: -45px;
   width: 100px;
   height: 185px;
-  background-image: url(../images/icons/dots-3.png);
+  background-image: url(/images/icons/dots-3.png);
   content: "";
 }
 .about-section-two .image-column .image-1 img {
@@ -3779,7 +3779,7 @@ Section Title
   width: 50%;
   background-repeat: no-repeat;
   background-position: center right;
-  background-image: url(../images/icons/shape.png);
+  background-image: url(/images/icons/shape.png);
   content: "";
 }
 
@@ -3852,7 +3852,7 @@ Section Title
   top: -40px;
   width: 540px;
   height: 540px;
-  background-image: url(../images/icons/shape-1.png);
+  background-image: url(/images/icons/shape-1.png);
   -webkit-animation: fa-spin 60s infinite linear;
           animation: fa-spin 60s infinite linear;
 }
@@ -3946,7 +3946,7 @@ Section Title
   height: 121px;
   left: 0;
   top: 0;
-  background-image: url(../images/icons/dots.png);
+  background-image: url(/images/icons/dots.png);
   content: "";
 }
 .service-block .inner-box:hover {
@@ -4136,7 +4136,7 @@ Section Title
   overflow: hidden;
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
-  background-image: url(../images/icons/dots-4.png);
+  background-image: url(/images/icons/dots-4.png);
   background-position: right bottom;
   background-repeat: no-repeat;
 }
@@ -4146,7 +4146,7 @@ Section Title
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../images/icons/dots-4-light.png);
+  background-image: url(/images/icons/dots-4-light.png);
   background-position: right bottom;
   background-repeat: no-repeat;
   content: "";
@@ -4632,7 +4632,7 @@ Section Title
   top: 0;
   width: 190px;
   height: 146px;
-  background-image: url(../images/icons/process-arrow.png);
+  background-image: url(/images/icons/process-arrow.png);
   content: "";
 }
 .process-block .icon-box .icon {
@@ -4717,7 +4717,7 @@ Section Title
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../images/icons/dotted-map-2.jpg);
+  background-image: url(/images/icons/dotted-map-2.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -4857,7 +4857,7 @@ Section Title
   display: block;
   height: 540px;
   width: 540px;
-  background-image: url(../images/icons/shape-1.png);
+  background-image: url(/images/icons/shape-1.png);
   -webkit-animation: fa-spin 60s infinite linear;
           animation: fa-spin 60s infinite linear;
 }
@@ -4999,7 +4999,7 @@ Section Title
   background-size: cover;
   overflow: hidden;
   background-color: #f3f3f3;
-  background-image: url(../images/icons/shape-4.jpg);
+  background-image: url(/images/icons/shape-4.jpg);
   padding: 100px 100px 90px;
 }
 .testimonial-section-three .fact-counter-two {
@@ -5189,7 +5189,7 @@ Section Title
   top: 30px;
   bottom: 30px;
   right: -30px;
-  background-image: url(../images/icons/team-bg.png);
+  background-image: url(/images/icons/team-bg.png);
   content: "";
   border-radius: 10px;
 }
@@ -5520,7 +5520,7 @@ Section Title
   top: 30px;
   height: 100%;
   width: 50%;
-  background-image: url(../images/icons/shape.png);
+  background-image: url(/images/icons/shape.png);
   background-position: right top;
   background-repeat: no-repeat;
   content: "";
@@ -5531,7 +5531,7 @@ Section Title
   top: 100px;
   width: 680px;
   height: 625px;
-  background-image: url(../images/icons/shape-6.png);
+  background-image: url(/images/icons/shape-6.png);
   background-repeat: no-repeat;
   background-position: center;
   content: "";
@@ -5641,7 +5641,7 @@ Section Title
   overflow: hidden;
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background-image: url(../images/icons/price-bg.jpg);
+  background-image: url(/images/icons/price-bg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -5652,7 +5652,7 @@ Section Title
   top: 30px;
   height: 100%;
   width: 100%;
-  background-image: url(../images/icons/price-hover-bg.jpg);
+  background-image: url(/images/icons/price-hover-bg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -6290,7 +6290,7 @@ Section Title
   top: 30px;
   width: 540px;
   height: 540px;
-  background-image: url(../images/icons/shape-1.png);
+  background-image: url(/images/icons/shape-1.png);
   -webkit-animation: fa-spin 60s infinite linear;
           animation: fa-spin 60s infinite linear;
 }
@@ -6345,7 +6345,7 @@ Section Title
   width: 50%;
   background-repeat: no-repeat;
   background-position: center right;
-  background-image: url(../images/icons/shape.png);
+  background-image: url(/images/icons/shape.png);
   content: "";
 }
 .why-choose-us-two .sec-title {
@@ -6729,11 +6729,11 @@ Section Title
   margin-bottom: 30px;
 }
 .feature-block-two:nth-child(3n+1) .inner-box {
-  background-image: url(../images/icons/feature-bg-3.png);
+  background-image: url(/images/icons/feature-bg-3.png);
 }
 .feature-block-two:nth-child(3n+2) .inner-box {
   background-color: var(--bg-theme-color2);
-  background-image: url(../images/icons/feature-bg-2.png);
+  background-image: url(/images/icons/feature-bg-2.png);
 }
 .feature-block-two:nth-child(3n+2) .inner-box::before {
   opacity: 0.1;
@@ -6744,7 +6744,7 @@ Section Title
   color: #ffffff;
 }
 .feature-block-two:nth-child(3n+3) .inner-box {
-  background-image: url(../images/icons/feature-bg-3.png);
+  background-image: url(/images/icons/feature-bg-3.png);
 }
 .feature-block-two:nth-child(3n+3) .inner-box::before {
   background-color: #ffffff;
@@ -7002,7 +7002,7 @@ Section Title
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(../images/icons/pattern-6.jpg);
+  background-image: url(/images/icons/pattern-6.jpg);
   content: "";
   max-height: 610px;
 }
@@ -7387,7 +7387,7 @@ Section Title
   z-index: 9;
 }
 .contact-info-section .contact-info-block:nth-child(even) .inner-box {
-  background-image: url(../images/icons/shape-3.jpg);
+  background-image: url(/images/icons/shape-3.jpg);
 }
 
 .contact-info-block {
@@ -7398,7 +7398,7 @@ Section Title
   padding: 90px 100px;
   padding-right: 50px;
   background-color: var(--bg-theme-color2);
-  background-image: url(../images/icons/shape-2.jpg);
+  background-image: url(/images/icons/shape-2.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -7469,7 +7469,7 @@ Section Title
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../images/icons/shape-5.jpg);
+  background-image: url(/images/icons/shape-5.jpg);
   content: "";
 }
 .contact-info-block-two .inner-box .title {
@@ -7534,7 +7534,7 @@ Section Title
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(../images/icons/dots-2.png);
+  background-image: url(/images/icons/dots-2.png);
   content: "";
 }
 .contact-section .image-column .inner-column {
@@ -8858,7 +8858,7 @@ Section Title
   width: 100%;
   height: 100%;
   content: "";
-  background-image: url(../images/icons/pattern-7.png);
+  background-image: url(/images/icons/pattern-7.png);
   background-repeat: no-repeat;
   background-position: left top;
   z-index: -1;
@@ -8881,7 +8881,7 @@ Section Title
   width: 100%;
   z-index: 2;
   content: "";
-  background-image: url(../images/icons/pattern-3.png);
+  background-image: url(/images/icons/pattern-3.png);
   background-repeat: no-repeat;
   background-position: center bottom;
 }
@@ -8923,16 +8923,16 @@ Section Title
   transform: rotate(10deg) scale(1.2);
 }
 .category-block .inner-box.cat-bg-1:before {
-  background-image: url(../images/icons/cat-1-bg.png);
+  background-image: url(/images/icons/cat-1-bg.png);
 }
 .category-block .inner-box.cat-bg-2:before {
-  background-image: url(../images/icons/cat-2-bg.png);
+  background-image: url(/images/icons/cat-2-bg.png);
 }
 .category-block .inner-box.cat-bg-3:before {
-  background-image: url(../images/icons/cat-3-bg.png);
+  background-image: url(/images/icons/cat-3-bg.png);
 }
 .category-block .inner-box.cat-bg-4:before {
-  background-image: url(../images/icons/cat-4-bg.png);
+  background-image: url(/images/icons/cat-4-bg.png);
 }
 .category-block .image {
   position: relative;
@@ -9182,7 +9182,7 @@ Section Title
   bottom: 0;
   height: 50px;
   width: 100%;
-  background-image: url(../images/icons/pattern-8.png);
+  background-image: url(/images/icons/pattern-8.png);
   background-position: center bottom;
   content: "";
 }
@@ -9211,7 +9211,7 @@ Section Title
   bottom: 0;
   height: 70%;
   width: 100%;
-  background: url(../images/icons/shape-7.png) top left no-repeat;
+  background: url(/images/icons/shape-7.png) top left no-repeat;
   content: "";
 }
 
@@ -9450,7 +9450,7 @@ Section Title
   top: 0;
   height: 100%;
   width: 100%;
-  background: url(../images/icons/pattern-7.png) left bottom no-repeat;
+  background: url(/images/icons/pattern-7.png) left bottom no-repeat;
   background-size: 700px;
 }
 

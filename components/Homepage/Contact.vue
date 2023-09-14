@@ -5,7 +5,7 @@ const props = defineProps({
   projects: Array,
   blogs: Array,
   clients: Array,
-  settings: Object
+  settings: Object,
 });
 
 const services = ref(props.services);
@@ -15,16 +15,22 @@ const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 
-
-const name = ref("")
-const email = ref("")
-const phone = ref("")
-const subject = ref("")
-const message = ref("")
-const isLoading = ref(false)
+const name = ref("");
+const email = ref("");
+const phone = ref("");
+const subject = ref("");
+const message = ref("");
+const isLoading = ref(false);
 const submitForm = () => {
-
-}
+  let data = {
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+    subject: subject.value,
+    message: message.value,
+  };
+  console.log("data -> ", data);
+};
 </script>
 <template>
   <!-- Contact Section Two -->
@@ -120,20 +126,23 @@ const submitForm = () => {
                   </div>
 
                   <div class="form-group col-lg-12">
-                        <button
-                          id="submit-button"
-                          class="theme-btn btn-style-one"
-                          type="button"
-                          name="submit-form"
-                          @click="submitForm"
-                        >
-                          <span class="btn-title">Send a message</span>
-                        </button>
-                      </div>
+                    <button
+                      id="submit-button"
+                      class="theme-btn btn-style-one"
+                      type="button"
+                      name="submit-form"
+                      @click="submitForm"
+                    >
+                      <span class="btn-title">Send a message</span>
+                    </button>
+                  </div>
 
-                      <div id="form-result" class="alert alert-success" role="alert" style="display: none;">
-                          
-                      </div>
+                  <div
+                    id="form-result"
+                    class="alert alert-success"
+                    role="alert"
+                    style="display: none"
+                  ></div>
                 </div>
               </form>
             </div>

@@ -12,7 +12,7 @@
             <div class="footer-widget about-widget">
               <div class="logo">
                 <nuxt-link to="/"
-                  ><img src="https://yaseo.co.uk/images/logo-white.svg" alt=""
+                  ><img src="/images/logo-white.svg" alt=""
                 /></nuxt-link>
               </div>
               <div class="text">
@@ -161,10 +161,6 @@ const getFullData = () => {
     console.log('err -> ',err)
   }
 }
-
-// const { data, pending, error } = await useAsyncData("get-data-for-footer", () =>
-//   getAllData()
-// );
 
 onMounted(() => {
   getFullData()

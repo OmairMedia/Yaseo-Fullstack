@@ -12,8 +12,8 @@
           <div class="title-outer">
             <h1 class="title">{{ blog.title }}</h1>
             <ul class="page-breadcrumb">
-              <li><a href="https://yaseo.co.uk">Home</a></li>
-              <li><a href="https://yaseo.co.uk/blogs">Blog</a></li>
+              <li><nuxt-link to="/">Home</nuxt-link></li>
+              <li><nuxt-link to="/blogs">Blog</nuxt-link></li>
               <li>{{ blog.title }}</li>
             </ul>
           </div>
@@ -29,7 +29,7 @@
               <div class="blog-details__left">
                 <div class="blog-details__img">
                   <img
-                    src="https://yaseo.co.uk/images/blog/3-search-engine-optimization-tips.jpg"
+                    src="/images/blog/3-search-engine-optimization-tips.jpg"
                     alt=""
                   />
                   <div class="blog-details__date">
@@ -53,95 +53,21 @@
                 <div class="sidebar__single sidebar__post">
                   <h3 class="sidebar__title">Latest Posts</h3>
                   <ul class="sidebar__post-list list-unstyled">
-                    <li>
+                    <li v-for="(rpost,index) in recentPosts" :key="index">
                       <div class="sidebar__post-image">
                         <img
-                          src="https://yaseo.co.uk/images/blog/blog-3.jpg"
+                          :src="rpost.image"
                           alt=""
                         />
                       </div>
                       <div class="sidebar__post-content">
                         <h3>
                           <span class="sidebar__post-content-meta"
-                            ><i class="fas fa-user-circle"></i>Admin</span
+                            ><i class="fas fa-user-circle"></i>{{ rpost.author }}</span
                           >
-                          <a
-                            href="https://yaseo.co.uk/blog/the-importance-of-a-business-plan"
-                            >The important of a business plan</a
-                          >
-                        </h3>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="sidebar__post-image">
-                        <img
-                          src="https://yaseo.co.uk/images/resource/news-2.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="sidebar__post-content">
-                        <h3>
-                          <span class="sidebar__post-content-meta"
-                            ><i class="fas fa-user-circle"></i>Teo</span
-                          >
-                          <a
-                            href="https://yaseo.co.uk/blog/domain-and-hosting-a-comprehensive-guide"
-                            >Domain and hosting a comprehensive guide</a
-                          >
-                        </h3>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="sidebar__post-image">
-                        <img
-                          src="https://yaseo.co.uk/images/blog/marketing-ideas.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="sidebar__post-content">
-                        <h3>
-                          <span class="sidebar__post-content-meta"
-                            ><i class="fas fa-user-circle"></i>Teo</span
-                          >
-                          <a href="https://yaseo.co.uk/blog/marketing-ideas"
-                            >Marketing Ideas Can Make You Or Break You</a
-                          >
-                        </h3>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="sidebar__post-image">
-                        <img
-                          src="https://yaseo.co.uk/images/blog/rebranding-vs-revamping.jpeg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="sidebar__post-content">
-                        <h3>
-                          <span class="sidebar__post-content-meta"
-                            ><i class="fas fa-user-circle"></i>Teo</span
-                          >
-                          <a
-                            href="https://yaseo.co.uk/blog/rebranding-vs-revamping"
-                            >Rebranding vs Revamping</a
-                          >
-                        </h3>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="sidebar__post-image">
-                        <img
-                          src="https://yaseo.co.uk/images/blog/seo-optimization.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="sidebar__post-content">
-                        <h3>
-                          <span class="sidebar__post-content-meta"
-                            ><i class="fas fa-user-circle"></i>Teo</span
-                          >
-                          <a href="https://yaseo.co.uk/blog/website-seo"
-                            >Get your website SEO ready for Holiday Shopping</a
+                          <nuxt-link
+                            :to="`blogs/${rpost.slug}`"
+                            >{{ rpost.title }}</nuxt-link
                           >
                         </h3>
                       </div>
@@ -158,24 +84,35 @@
 </template>
 
 <script setup>
+import moment from 'moment'
 const route = useRoute();
 import { onValue, ref as databaseRef, query, orderByChild, equalTo } from "firebase/database";
 const nuxtApp = useNuxtApp();
 
 const blog = ref(null);
+const blogs = ref([]);
+const recentPosts = ref([]);
 
 const getBlog = () => {
-  blog.value = null;
-  const blogsRef = query(databaseRef(nuxtApp.$database, `blogs`),orderByChild('slug', equalTo(route.params.slug)));
+  blogs.value = [];
+  const blogsRef = query(databaseRef(nuxtApp.$database, `blogs`));
   onValue(blogsRef, (snapshot) => {
     if (snapshot.val()) {
       snapshot.forEach((x) => {
-        blog.value = x.val();
+        if(x.val().slug === route.params.slug) {
+          blog.value = x.val()
+        }
+        blogs.value.push(x.val())
+        recentPosts.value.push(x.val())
       })
+      recentPosts.value.sort((a,b) => {
+        let dateA = moment(a.date).valueOf()
+        let dateB = moment(b.date).valueOf()
+        return dateB - dateA
+      })  
+      recentPosts.value.splice(5)
     }
   });
-
-  console.log(blog.value)
 };
 
 useAsyncData("get-blog-data", () => getBlog());

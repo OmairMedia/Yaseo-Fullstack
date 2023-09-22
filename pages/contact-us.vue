@@ -133,6 +133,7 @@
                       class="form-control"
                       type="text"
                       placeholder="Enter Name"
+                      v-model="name"
                     />
                   </div>
                 </div>
@@ -144,6 +145,7 @@
                       class="form-control required email"
                       type="email"
                       placeholder="Enter Email"
+                      v-model="email"
                     />
                   </div>
                 </div>
@@ -157,6 +159,7 @@
                       class="form-control required"
                       type="text"
                       placeholder="Enter Subject"
+                      v-model="subject"
                     />
                   </div>
                 </div>
@@ -168,6 +171,7 @@
                       class="form-control"
                       type="text"
                       placeholder="Enter Contact Number"
+                      v-model="phone"
                     />
                   </div>
                 </div>
@@ -179,9 +183,10 @@
                   class="form-control required"
                   rows="5"
                   placeholder="Enter Message"
+                  v-model="message"
                 ></textarea>
               </div>
-              <!-- <div class="mb-3 text-center">
+              <div class="mb-3 text-center">
                   <input
                     name="form_botcheck"
                     class="form-control"
@@ -192,13 +197,14 @@
                     type="button"
                     id="submit-button"
                     class="theme-btn btn-style-one"
-                    data-loading-text="Please wait..."
+                    @click="handleSubmit"
                   >
                     <span class="btn-title">Send message</span>
+                    <div v-if="isLoading" class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </button>
-                  <div id="form-result"></div>
-               
-                </div> -->
+                </div>
             </form>
           </div>
         </div>
@@ -207,3 +213,81 @@
     <!--Contact Details End-->
   </div>
 </template>
+
+<script setup>
+const name = ref("")
+const email = ref("")
+const subject = ref("")
+const message = ref("")
+const phone = ref("")
+const isLoading = ref(false)
+
+import { onValue, ref as databaseRef } from "firebase/database";
+const nuxtApp = useNuxtApp();
+const settings = ref({
+  activeClients:"15",
+  address:"58 the Arches, Windsor, SL4 3HY , United Kingdom",
+  contactUsDescription:"To take the first step towards growing your business, or to find out more about what we offer, there are a number of ways to get in touch with us.",
+  contactUsHeading:"Get In Touch",
+  cupOfCoffee:"198",
+  email:"info@yaseo.co.uk",
+  facebook:"https://www.facebook.com/Yaseo.co.uk/",
+  findUsIframe:'<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.605683720642!2d-0.6162592841226574!3d51.48375182025274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48767ae29d07b8cb%3A0x297bac6b6dcf4631!2s58%20The%20Arches%2C%20Windsor%2C%20UK!5e0!3m2!1sen!2s!4v1681141431064!5m2!1sen!2s" > </iframe>',
+  instagram:"https://linkedin.com/company/yaseo/",
+  linkedin:"https://linkedin.com/company/yaseo/",
+  mapURLAdress:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.605683720642!2d-0.6162592841226574!3d51.48375182025274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48767ae29d07b8cb%3A0x297bac6b6dcf4631!2s58%20The%20Arches%2C%20Windsor%2C%20UK!5e0!3m2!1sen!2s!4v1681141431064!5m2!1sen!2s",
+  phone:"0800 999 1217",
+  pinterest:"https://pinterest.co.uk/Yaseo_Digital/",
+  projectsCompleted:"500",
+  satisfiedClients:"500",
+  support:"",
+  teamMembers:"15",
+  twitter:"https://twitter.com/Yaseo_Digital/",
+  whatsappNumber:"",
+  winningAward:"15"
+});
+
+const getFullData = () => {
+  try {
+    const allDataRef = databaseRef(nuxtApp.$database, "/");
+    onValue(allDataRef, (snapshot) => {
+      if (snapshot.val()) {
+        const data = snapshot.val();
+        for (let key in data) {
+          if (key == "settings") {
+            settings.value = data[key];
+          }
+        }
+      }
+    });
+  } catch (err) {
+    console.log("err -> ", err);
+  }
+};
+
+const { data, pending, error } = await useAsyncData("get-data-for-contact", () =>
+  getFullData()
+);
+
+const handleSubmit = async () => {
+  isLoading.value = true;
+  let bodyData = {
+    name: name.value,
+    email: email.value,
+    subject: subject.value,
+    message: message.value,
+    phone: phone.value
+  }
+
+  const { data, error } = await useFetch('/api/contact', {
+    body: bodyData,
+    method: 'post'
+  });
+  console.log('data -> ',data.value)
+
+  if(!error) {
+    isLoading.value = false;
+  }
+
+}
+</script>

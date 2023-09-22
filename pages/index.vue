@@ -170,7 +170,28 @@ useSeoMeta({
 
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
-const settings = ref({});
+const settings = ref({
+activeClients:"15",
+address:"58 the Arches, Windsor, SL4 3HY , United Kingdom",
+contactUsDescription:"To take the first step towards growing your business, or to find out more about what we offer, there are a number of ways to get in touch with us.",
+contactUsHeading:"Get In Touch",
+cupOfCoffee:"198",
+email:"info@yaseo.co.uk",
+facebook:"https://www.facebook.com/Yaseo.co.uk/",
+findUsIframe:'<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.605683720642!2d-0.6162592841226574!3d51.48375182025274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48767ae29d07b8cb%3A0x297bac6b6dcf4631!2s58%20The%20Arches%2C%20Windsor%2C%20UK!5e0!3m2!1sen!2s!4v1681141431064!5m2!1sen!2s" > </iframe>',
+instagram:"https://linkedin.com/company/yaseo/",
+linkedin:"https://linkedin.com/company/yaseo/",
+mapURLAdress:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.605683720642!2d-0.6162592841226574!3d51.48375182025274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48767ae29d07b8cb%3A0x297bac6b6dcf4631!2s58%20The%20Arches%2C%20Windsor%2C%20UK!5e0!3m2!1sen!2s!4v1681141431064!5m2!1sen!2s",
+phone:"0800 999 1217",
+pinterest:"https://pinterest.co.uk/Yaseo_Digital/",
+projectsCompleted:"500",
+satisfiedClients:"500",
+support:"",
+teamMembers:"15",
+twitter:"https://twitter.com/Yaseo_Digital/",
+whatsappNumber:"",
+winningAward:"15"
+});
 const unfilteredblogs = ref([]);
 const blogs = ref([
   {
@@ -193,7 +214,19 @@ const blogs = ref([
   },
 ]);
 const unfilteredServices = ref([]);
-const services = ref([]);
+const services = ref([
+  {
+    description:`<h3>Service Overview</h3><p>As an independent business, your brand and products matter to you in a way that is no doubt deeply personal. This is why we want to work with you, we aren’t setting out to change the essence of who you are. We want to find a way to help you communicate that identity in clear and innovative terms.</p><p>When it comes to marketing and branding, the power of narrative sells. Stories are not just easy for your audience to relate to, they help to build brand identity. Whether it’s an anecdotal piece of content, or a coherent and powerful mission statement, crafting the stories behind your business will lend your marketing a powerful impact.</p><h3>Our Offering</h3><p>Our team of branding experts works closely with our clients to ensure that their brand strategy aligns with their overall marketing strategy and business goals. We also provide ongoing support to ensure that the brand remains relevant and effective over time, adapting to changing market conditions and customer preferences.</p><blockquote><strong>If you're looking to establish a strong and unique identity for your business or product, our branding services can help. Contact us today to learn more about how we can help your business succeed through effective branding.</strong></blockquote><p><img src="https://yaseo.co.uk/images/services/branding-1.png" alt="images"></p><p><img src="https://yaseo.co.uk/images/services/branding-2.png" alt="images"></p>`,
+    faqs: [],
+    icon:"flaticon-color-sample",
+    id:"-NdfJD02nBqS1FnEaXTj",
+    meta_description:"YASEO is a branding and digital marketing agency based in the United Kingdom. We craft and position brands through strategic storytelling.",
+    meta_slug:"branding",
+    meta_title:"Branding Agency | We Build The World's Most Desirable Brands - YASEO",
+    name:"Branding",
+    text:"Ready to create the next big thing"
+  }
+]);
 const unfilteredClients = ref([]);
 const clients = ref([]);
 const unfilteredProjects = ref([]);
@@ -289,7 +322,7 @@ const getFullData = () => {
   }
 };
 
-const { data, pending, error } = await useAsyncData("get-data-for-index", () =>
+const { data, pending, error } = await useAsyncData("get-data-for-homepage", () =>
   getFullData()
 );
 </script>

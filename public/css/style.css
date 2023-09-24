@@ -5438,7 +5438,7 @@ Section Title
 }
 .accordion-box .block .acc-content {
   position: relative;
-  display: none;
+  /* display: none; */
 }
 .accordion-box .block .acc-content .content {
   position: relative;
@@ -12316,11 +12316,11 @@ Sidebar
 /* Widget Section */
 .main-footer .widgets-section {
   position: relative;
-  padding: 90px 0 20px;
+  padding: 20px 0 20px;
 }
 .main-footer .footer-column {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .main-footer .footer-widget {
   position: relative;

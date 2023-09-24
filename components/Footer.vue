@@ -76,7 +76,7 @@
               <div class="widget-content">
                 <div class="outer clearfix">
                   <figure class="image" v-for="(project,index) in projects" :key="index">
-                    <nuxt-link :to="`case-studies/${project.slug}`"
+                    <nuxt-link :to="`/case-studies/${project.name}`"
                       ><img
                         :src="`${project.image}`"
                         width="80"

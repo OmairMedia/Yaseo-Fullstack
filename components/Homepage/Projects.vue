@@ -14,7 +14,7 @@
                 <div class="inner-box">
                   <div class="image-box">
                     <figure class="image">
-                      <nuxt-link :to="`case-studies/${item.slug}`"
+                      <nuxt-link :to="`case-studies/${item.name}`"
                         ><img
                           :src="item.image"
                           width="400"
@@ -23,12 +23,12 @@
                       /></nuxt-link>
                     </figure>
                     <div class="info-box">
-                      <nuxt-link :to="item.slug" class="read-more"
+                      <nuxt-link :to="`case-studies/${item.name}`" class="read-more"
                         ><i class="fa fa-long-arrow-alt-right"></i
                       ></nuxt-link>
                       <span class="cat">Category</span>
                       <h6 class="title">
-                        <nuxt-link :to="`case-studies/${item.slug}`"
+                        <nuxt-link :to="`case-studies/${item.name}`"
                           >{{ item.name }}</nuxt-link
                         >
                       </h6>

@@ -13,6 +13,7 @@
           <ul class="page-breadcrumb">
             <li><nuxt-link to="/">Home</nuxt-link></li>
             <li>Case Studies</li>
+            <li>{{ route.params.name }}</li>
           </ul>
         </div>
       </div>
@@ -29,7 +30,7 @@
               <div class="inner-box">
                 <div class="image-box">
                   <figure class="image">
-                    <nuxt-link :to="category.slug">
+                    <nuxt-link :to="`/case-studies/${route.params.name}/${category.slug}`">
                       <img
                         :src="category.image"
                         alt=""
@@ -38,13 +39,13 @@
                   </figure>
                   <div class="info-box">
                     <nuxt-link
-                      :to="category.slug"
+                      :to="`/case-studies/${route.params.name}/${category.slug}`"
                       class="read-more"
                       ><i class="fa fa-long-arrow-alt-right"></i
                     ></nuxt-link>
                     <span class="cat">Category</span>
                     <h6 class="title">
-                      <nuxt-link :to="category.slug">{{ category.name }}</nuxt-link>
+                      <nuxt-link :to="`/case-studies/${route.params.name}/${category.slug}`">{{ category.name }}</nuxt-link>
                     </h6>
                   </div>
                 </div>
@@ -91,6 +92,7 @@ const unfilteredCases = ref([])
 
 const route = useRoute()
 const getFullData = () => {
+  cases.value = [];
   const allDataRef = databaseRef(nuxtApp.$database, "/");
   onValue(allDataRef, (snapshot) => {
     if (snapshot.val()) {
@@ -102,8 +104,8 @@ const getFullData = () => {
         if(key == 'cases') {
           unfilteredCases.value = data[key];
           for(let serviceKey in unfilteredCases.value) {
-            if(unfilteredCases.value[serviceKey].category == route.params.name){
-              cases.value.push(unfilteredCases.value[serviceKey])
+            if(unfilteredCases.value[serviceKey].category.includes(route.params.name)){
+               cases.value.push(unfilteredCases.value[serviceKey]) 
             }
           }
         }
@@ -119,5 +121,5 @@ const getFullData = () => {
   });
 }
 
-const {data, pending, error} = await useAsyncData("get-data-for-index", () => getFullData());
+const {data, pending, error} = await useAsyncData("get-data-for-case-studies", () => getFullData());
 </script>

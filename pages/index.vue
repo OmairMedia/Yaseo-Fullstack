@@ -26,15 +26,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageProjects
-      :settings="settings"
-      :services="services"
-      :testimonials="testimonials"
-      :categories="categories"
-      :projects="projects"
-      :blogs="blogs"
-      :clients="clients"
-    />
+
     <HomepageServiceShowcase
       :settings="settings"
       :services="services"
@@ -68,14 +60,14 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageMicrosoft
+    <!-- <HomepageMicrosoft
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
       :projects="projects"
       :blogs="blogs"
       :clients="clients"
-    />
+    /> -->
     <HomepageTestimonials
       :settings="settings"
       :services="services"
@@ -154,6 +146,7 @@
 </template>
 
 <script setup>
+import moment from 'moment';
 useSeoMeta({
   title: "Digital Marketing | Web Design Company London - Yaseo",
   ogTitle: "Digital Marketing | Web Design Company London - Yaseo",
@@ -261,6 +254,8 @@ const section1 = ref({});
 
 const getFullData = () => {
   try {
+    blogs.value = [];
+    unfilteredblogs.value = [];
     services.value = [];
     clients.value = [];
     projects.value = [];
@@ -315,6 +310,14 @@ const getFullData = () => {
             }
           }
         }
+
+         // blogs.value
+         blogs.value.sort((a,b) => {
+          let dateA = moment(a.date).valueOf()
+          let dateB = moment(b.date).valueOf()
+          return dateB - dateA
+        })  
+        blogs.value.splice(3)
       }
     });
   } catch (err) {

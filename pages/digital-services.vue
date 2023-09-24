@@ -4,14 +4,14 @@
     <section
       class="page-title"
       style="
-        background-image: url(https://yaseo.co.uk/images/background/page-title.jpg);
+        background-image: url(/images/background/page-title.jpg);
       "
     >
       <div class="auto-container">
         <div class="title-outer">
           <h1 class="title">Services</h1>
           <ul class="page-breadcrumb">
-            <li><a href="https://yaseo.co.uk/">Home</a></li>
+            <li><nuxt-link to="/">Home</nuxt-link></li>
             <li>Services</li>
           </ul>
         </div>
@@ -34,15 +34,15 @@
                 <i :class="`icon ${service.icon}`"></i>
               </div>
               <h5 class="title">
-                <a :href="`https://yaseo.co.uk/${service.meta_slug}`">{{
+                <nuxt-link :to="`/${service.meta_slug}`">{{
                   service.name
-                }}</a>
+                }}</nuxt-link>
               </h5>
               <div class="text">{{ service.text }}</div>
-              <a
-                :href="`https://yaseo.co.uk/${service.meta_slug}`"
+              <nuxt-link
+                :to="`/${service.meta_slug}`"
                 class="read-more"
-                ><i class="fa fa-long-arrow-alt-right"></i> Read more</a
+                ><i class="fa fa-long-arrow-alt-right"></i> Read more</nuxt-link
               >
             </div>
           </div>
@@ -88,7 +88,4 @@ const { data, pending, error } = await useAsyncData(
   () => getServices()
 );
 
-// onMounted(() => {
-//   getServices()
-// })
 </script>

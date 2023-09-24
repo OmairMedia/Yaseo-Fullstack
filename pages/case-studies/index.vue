@@ -44,7 +44,7 @@
                     ></nuxt-link>
                     <span class="cat">Category</span>
                     <h6 class="title">
-                      <nuxt-link :to="category.slug">{{ category.name }}</nuxt-link>
+                      <nuxt-link :to="`/case-studies/${category.name}`">{{ category.name }}</nuxt-link>
                     </h6>
                   </div>
                 </div>

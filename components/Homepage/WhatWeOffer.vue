@@ -1,6 +1,8 @@
 <script setup>
-import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import "@splidejs/vue-splide/css";
+// import { Splide, SplideSlide } from "@splidejs/vue-splide";
+// import "@splidejs/vue-splide/css";
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
 const props = defineProps({
   services: Array,
@@ -18,6 +20,20 @@ const testimonials = ref(props.testimonials);
 const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
+
+
+const breakpoints = ref( {
+      // 700px and up
+      700: {
+        itemsToShow: 3.5,
+        snapAlign: 'center',
+      },
+      // 1024 and up
+      1024: {
+        itemsToShow: 5,
+        snapAlign: 'start',
+      },
+    })
 </script>
 <template>
   <!-- Services Section Two -->
@@ -83,7 +99,30 @@ const clients = ref(props.clients);
 
       <div class="outer-box">
         <div class="services-carousel">
-          <Splide
+          <carousel :items-to-show="5.5" :wrap-around="false" :transition="500" :breakpoints="breakpoints">
+            <slide v-for="(service,index) in services" :key="service.id">
+              <div class="service-block-two mx-2">
+                <div class="inner-box">
+                  <span class="count">{{ index + 1 }}</span>
+                  <div class="icon-box">
+                    <i :class="`icon ${service.icon}`"></i>
+                  </div>
+                  <h5 class="title">
+                    <nuxt-link :to="`/${service.meta_slug}`">{{ service.name }}</nuxt-link>
+                  </h5>
+                  <div class="text">
+                    {{ service.text }}
+                  </div>
+                </div>
+              </div>
+            </slide>
+
+            <template #addons>
+              <navigation />
+              <pagination />
+            </template>
+          </carousel>
+          <!-- <Splide
             :options="{
               rewind: true,
               perPage: 4,
@@ -107,7 +146,7 @@ const clients = ref(props.clients);
                 </div>
               </div>
             </SplideSlide>
-          </Splide>
+          </Splide> -->
         </div>
       </div>
 

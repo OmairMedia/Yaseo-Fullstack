@@ -1,4 +1,11 @@
 <script setup>
+
+// import { Splide, SplideSlide } from '@splidejs/vue-splide';
+// import '@splidejs/vue-splide/css';
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
+
 const props = defineProps({
   services: Array,
   testimonials: Array,
@@ -16,47 +23,6 @@ const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import '@splidejs/vue-splide/css';
-
-const items = ref([
-  {
-    link: 'https://boltec.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/boltec.png'
-  },
-  {
-    link: 'https://www.housewavesuk.com/',
-    image: 'https://yaseo.co.uk/images/clients/housewave.png'
-  },
-  {
-    link: 'https://sparklehomecleaning.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/sparkle.png'
-  },
-  {
-    link: 'https://360apartments.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/360apartments.png'
-  },
-  {
-    link: 'https://360stays.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/360stays.png'
-  },
-  {
-    link: 'https://ariaelcreatives.com/',
-    image: 'https://yaseo.co.uk/images/clients/ariaelcreatives.png'
-  },
-  {
-    link: 'https://ferndaleapartments.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/ferndale-apartments.png'
-  },
-  {
-    link: 'https://www.heathrowliving.co.uk/',
-    image: 'https://yaseo.co.uk/images/clients/heathrow-living.png'
-  },
-  {
-    link: 'https://hassanazim.com/',
-    image: 'https://yaseo.co.uk/images/clients/hitman-hassan.png'
-  }
-])
 </script>
 <template>
   <!-- Clients Section -->
@@ -64,7 +30,18 @@ const items = ref([
     <div class="auto-container">
       <!-- Sponsors Outer -->
       <div class="sponsors-outer">
-        <Splide :options="{ rewind: true, perPage: 3, pagination:false }">
+        <Carousel id="gallery" :items-to-show="3.5">
+          <Slide v-for="(item,index) in clients" :key="index">
+            <li class="slide-item">
+              <a :href="item.link"
+                ><img
+                  :src="item.image"
+                  alt=""
+              /></a>
+            </li>
+          </Slide>
+        </Carousel>
+        <!-- <Splide :options="{ rewind: true, perPage: 3, pagination:false }">
           <SplideSlide v-for="(item,index) in clients" :key="index">
             <li class="slide-item">
               <a :href="item.link"
@@ -74,7 +51,7 @@ const items = ref([
               /></a>
             </li>
           </SplideSlide>
-        </Splide>
+        </Splide> -->
       </div>
     </div>
   </section>

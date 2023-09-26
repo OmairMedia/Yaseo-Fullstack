@@ -344,7 +344,7 @@ const getFullData = () => {
   }
 };
 
-const { data, pending, error } = await useAsyncData("get-data-for-index", () =>
+const { data, pending, error } = await useAsyncData("get-data-for-aboutus", () =>
   getFullData()
 );
 </script>

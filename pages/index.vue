@@ -59,6 +59,7 @@
       :projects="projects"
       :blogs="blogs"
       :clients="clients"
+      :technologies="technologies"
     />
     <!-- <HomepageMicrosoft
       :settings="settings"
@@ -251,6 +252,8 @@ const cases = ref([
 ]);
 const unfilteredCases = ref([]);
 const section1 = ref({});
+const unfilteredTechnologies = ref([]);
+const technologies = ref([]);
 
 const getFullData = () => {
   try {
@@ -263,6 +266,7 @@ const getFullData = () => {
     video.value = {}
     categories.value = [];
     cases.value = [];
+    technologies.value = [];
     const allDataRef = databaseRef(nuxtApp.$database, "/");
     onValue(allDataRef, (snapshot) => {
       if (snapshot.val()) {
@@ -309,10 +313,15 @@ const getFullData = () => {
               projects.value.push(unfilteredProjects.value[serviceKey]);
             }
           }
+          if (key == "technologies") {
+            unfilteredTechnologies.value = data[key];
+            for (let serviceKey in unfilteredTechnologies.value) {
+              technologies.value.push(unfilteredTechnologies.value[serviceKey]);
+            }
+          }
         }
-
-         // blogs.value
-         blogs.value.sort((a,b) => {
+        // blogs.value
+        blogs.value.sort((a,b) => {
           let dateA = moment(a.date).valueOf()
           let dateB = moment(b.date).valueOf()
           return dateB - dateA

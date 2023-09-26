@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  debug: true,
   app: {
     head: {
       meta: [
@@ -62,5 +63,8 @@ export default defineNuxtConfig({
     FB_APP_ID: '1:168025898570:web:b74002397f1bb5f5b6b0b3',
     FB_DATABASE_URL: 'https://yaseo-fullstack-default-rtdb.europe-west1.firebasedatabase.app/'
    }
-  }
+  },
+  plugins: [
+   
+  ],
 })

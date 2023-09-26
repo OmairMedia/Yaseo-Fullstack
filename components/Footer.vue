@@ -75,13 +75,13 @@
               <h6 class="widget-title">Case Studies</h6>
               <div class="widget-content">
                 <div class="outer clearfix">
-                  <figure class="image" v-for="(project,index) in projects" :key="index">
+                  <figure class="image" v-for="(project,index) in categories" :key="index">
                     <nuxt-link :to="`/case-studies/${project.name}`"
                       ><img
                         :src="`${project.image}`"
                         width="80"
                         height="85"
-                        alt="Mowana"
+                        :alt="project.name"
                     /></nuxt-link>
                   </figure>
                 </div>
@@ -142,10 +142,14 @@ const projects = ref([
     category: 'branding'
   }
 ]);
+const unfilteredCategories = ref([]);
+const categories = ref([]);
 
 const getFullData = () => {
   try {
     const allDataRef = databaseRef(nuxtApp.$database, "/");
+    unfilteredCategories.value = [];
+    categories.value = [];
     onValue(allDataRef, (snapshot) => {
       if (snapshot.val()) {
         const data = snapshot.val();
@@ -153,8 +157,16 @@ const getFullData = () => {
           if(key == 'settings') {
             settings.value = data[key]
           }
-          
+          if(key == 'categories') {
+            console.log('key -> ',key)
+            unfilteredCategories.value = data[key]
+            for(let catKey in unfilteredCategories) {
+              categories.value.push(unfilteredCategories[catKey])
+            }
+          }
         }
+
+       
       }
     })
   } catch (err) {

@@ -9,7 +9,6 @@
         </div>
 
         <div class="row">
-          <!-- Service Block -->
           <div
             class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp animated"
             style="visibility: visible; animation-name: fadeInUp"
@@ -54,5 +53,8 @@ const props = defineProps({
   settings: Object,
 });
 
+const settings = ref(props.settings)
 const services = ref(props.services);
+
+console.log('services -> ',services)
 </script>

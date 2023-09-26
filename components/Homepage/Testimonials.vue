@@ -1,4 +1,6 @@
 <script setup>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 const props = defineProps({
   services: Array,
   testimonials: Array,
@@ -15,8 +17,8 @@ const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import '@splidejs/vue-splide/css';
+// import { Splide, SplideSlide } from '@splidejs/vue-splide';
+// import '@splidejs/vue-splide/css';
 
 // const testimonials = ref([
 //   {
@@ -87,7 +89,32 @@ import '@splidejs/vue-splide/css';
               </div>
 
               <div class="carousel-outer">
-                <Splide :options="{ rewind: true, pagination:false }">
+                <Carousel ref="carousel">
+                  <Slide v-for="(item,index) in testimonials" :key="index">
+                    <div class="testimonial-block-two">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <div class="text">
+                            {{ item.text }}
+                          </div>
+                          <div class="info-box">
+                            <h6 class="name">{{ item.name }}</h6>
+                            <span class="designation"
+                              >{{ item.designation }}</span
+                            >
+                            <span class="icon icon-quote"></span>
+                          </div>
+                          <div class="rating">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i
+                            ><i class="fa fa-star"></i><i class="fa fa-star"></i
+                            ><i class="fa fa-star"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                </Carousel>
+                <!-- <Splide :options="{ rewind: true, pagination:false }">
                   <SplideSlide v-for="(item,index) in testimonials" :key="index">
                     <div class="testimonial-block-two">
                       <div class="inner-box">
@@ -111,7 +138,7 @@ import '@splidejs/vue-splide/css';
                       </div>
                     </div>
                   </SplideSlide>
-                </Splide>
+                </Splide> -->
                 
               </div>
             </div>

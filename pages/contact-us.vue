@@ -39,8 +39,8 @@
                   </div>
                   <div class="text">
                     <h6>Any questions?</h6>
-                    <a href="tel:08009991217"
-                      ><span>Call us free on</span> 0800 999 1217</a
+                    <a :href="`tel:${settings.phone}`"
+                      ><span>Call us free on</span> {{ settings.phone }}</a
                     >
                   </div>
                 </li>
@@ -50,7 +50,7 @@
                   </div>
                   <div class="text">
                     <h6>Email us on</h6>
-                    <a href="mailto:info@yaseo.co.uk">info@yaseo.co.uk</a>
+                    <a :href="`mailto:${settings.email}`">{{ settings.email }}</a>
                   </div>
                 </li>
                 <li>
@@ -67,8 +67,7 @@
                       >
                     </h6>
                     <span
-                      >58 the Arches, Windsor <br />
-                      SL4 3HY, United Kingdom</span
+                      >{{ settings.address }}</span
                     >
                   </div>
                 </li>
@@ -78,14 +77,7 @@
           <div class="col-xl-7 col-lg-6">
             <!-- Google Map HTML Codes -->
             <div class="map-section-contact">
-              <iframe
-                class="map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.605683720642!2d-0.6162592841226574!3d51.48375182025274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48767ae29d07b8cb%3A0x297bac6b6dcf4631!2s58%20The%20Arches%2C%20Windsor%2C%20UK!5e0!3m2!1sen!2s!4v1681141431064!5m2!1sen!2s"
-                width="100%"
-                height="550"
-                frameborder="0"
-                allowfullscreen=""
-              ></iframe>
+              <div class="" v-html="settings.findUsIframe"></div>
               <!-- <div class="auto-container">
                   <div class="info-box">
                     <div class="text">
@@ -215,6 +207,8 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2'
+
 const name = ref("")
 const email = ref("")
 const subject = ref("")
@@ -283,11 +277,18 @@ const handleSubmit = async () => {
     body: bodyData,
     method: 'post'
   });
-  console.log('data -> ',data.value)
+ 
 
   if(!error) {
     isLoading.value = false;
   }
 
+  console.log('data -> ',data.value)
+
+  Swal.fire({
+    title: 'Email Sent!',
+    text: 'You will receive a reply soon...',
+    icon: 'success'
+  })
 }
 </script>

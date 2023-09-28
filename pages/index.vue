@@ -228,7 +228,9 @@ const projects = ref([]);
 const unfilteredTestimonials = ref([]);
 const testimonials = ref([]);
 const unfilteredVideo = ref([]);
-const video = ref([]);
+const video = ref({
+  link: "https://firebasestorage.googleapis.com/v0/b/yaseo-fullstack.appspot.com/o/video%2Fhome-1.mp4?alt=media&token=51b94f8b-b909-40b8-84af-8054ff17ea9b"
+});
 const categories = ref([]);
 const unfilteredCategories = ref([]);
 const cases = ref([
@@ -277,8 +279,8 @@ const getFullData = () => {
           }
           if (key == "services") {
             unfilteredServices.value = data[key];
-            for (let serviceKey in data[key]) {
-              services.value.push(data[key][serviceKey]);
+            for (let serviceKey in unfilteredServices.value) {
+              services.value.push(unfilteredServices.value[serviceKey]);
             }
           }
           if (key == "clients") {
@@ -301,16 +303,16 @@ const getFullData = () => {
           }
           if (key == "homepage") {
             unfilteredTestimonials.value = data[key].testimonials;
-            video.value = data[key].video;
-            section1.value = data[key].section1;
+            video.value = unfilteredTestimonials.value.video;
+            section1.value = unfilteredTestimonials.value.section1;
             for (let serviceKey in unfilteredTestimonials.value) {
               testimonials.value.push(unfilteredTestimonials.value[serviceKey]);
             }
           }
           if (key == "cases") {
-            unfilteredProjects.value = data[key];
-            for (let serviceKey in unfilteredProjects.value) {
-              projects.value.push(unfilteredProjects.value[serviceKey]);
+            unfilteredCases.value = data[key];
+            for (let serviceKey in unfilteredCases.value) {
+              cases.value.push(unfilteredCases.value[serviceKey]);
             }
           }
           if (key == "technologies") {

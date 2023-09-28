@@ -1,4 +1,6 @@
 <script setup>
+import Swal from 'sweetalert2'
+
 const props = defineProps({
   services: Array,
   testimonials: Array,
@@ -21,16 +23,35 @@ const phone = ref("");
 const subject = ref("");
 const message = ref("");
 const isLoading = ref(false);
-const submitForm = () => {
-  let data = {
+
+const submitForm = async () => {
+  isLoading.value = true;
+  let bodyData = {
     name: name.value,
     email: email.value,
-    phone: phone.value,
     subject: subject.value,
     message: message.value,
-  };
-  console.log("data -> ", data);
-};
+    phone: phone.value
+  }
+
+  const { data, error } = await useFetch('/api/contact', {
+    body: bodyData,
+    method: 'post'
+  });
+  console.log('data -> ',data.value)
+
+  if(!error) {
+    isLoading.value = false;
+  }
+
+  Swal.fire({
+    title: 'Email Sent!',
+    text: 'You will receive a reply soon...',
+    icon: 'success'
+  })
+}
+
+
 </script>
 <template>
   <!-- Contact Section Two -->
@@ -56,8 +77,8 @@ const submitForm = () => {
             </div>
             <div class="timing">
               <span class="tilte">Timings</span>
-              <div class="time">Mon-Fri 9 am - 6 pm</div>
-              <div class="time">Sat 11 am - 2 pm</div>
+              <div class="time">{{ settings.timing1 }}</div>
+              <div class="time">{{ settings.timing2 }}</div>
             </div>
           </div>
         </div>

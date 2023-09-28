@@ -1,5 +1,6 @@
 <template>
     <div>
+  
          <!-- Start main-content -->
       <section
         class="page-title"
@@ -7,17 +8,19 @@
       >
         <div class="auto-container">
           <div class="title-outer">
-            <h1 class="title">{{ route.params.slug }}</h1>
+            <h1 class="title" v-if="page">{{ page.title }}</h1>
+            <h1 class="title" v-if="service">{{ service.name }}</h1>
             <ul class="page-breadcrumb">
               <li><nuxt-link to="/">Home</nuxt-link></li>
-              <li>{{ route.params.slug }}</li>
+              <li v-if="page">{{ page.title  }}</li>
+              <li v-if="service">{{ service.name  }}</li>
             </ul>
           </div>
         </div>
       </section>
 
       <!--Start Services Details-->
-      <section class="services-details" v-if="service">
+      <section class="services-details" v-if="service && !page">
         <div class="container">
           <div class="row">
             <!--Start Services Details Sidebar-->
@@ -94,7 +97,7 @@
       </section>
       <!--End Services Details-->
 
-      <section class="" v-if="page">
+      <section class="" v-if="page && !service">
         <div class="container">
            <div v-html="page.content"></div>
         </div>
@@ -103,9 +106,6 @@
 </template>
 
 <script setup>
-
-
-
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const route = useRoute();
@@ -118,35 +118,81 @@ const unfilteredPages = ref([]);
 const pages = ref([]);
 const isActive = ref(false);
 const settings = ref({});
+const metaData = ref({
+  title: '',
+  description: '',
+  ogTitle: '',
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/${route.params.slug}`,
+  ogImage: '',
+  ogDescription: '',
+  ogImage: '',
+  twitterCard: '',
+  twitterTitle: '',
+  twitterDescription: '',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
 
 const { data, pending, error } = await useAsyncData("get-data-for-dynamic-page", () => {
   try {
     const allDataRef = databaseRef(nuxtApp.$database, `/`);
+    page.value = null;
+    service.value = null;
+    services.value = [];
+    pages.value = [];
     onValue(allDataRef, (snapshot) => {
       if(snapshot.val()) {
         const data = snapshot.val();
         for (let key in data) {
           if (key == "services") {
             unfilteredServices.value = data[key];
-            for (let serviceKey in data[key]) {
-              services.value.push(data[key][serviceKey]);
-              if(data[key][serviceKey].meta_slug === route.params.slug) {
-                 service.value = data[key][serviceKey];
+            for (let serviceKey in unfilteredServices.value) {
+              services.value.push(unfilteredServices.value[serviceKey]);
+              if(unfilteredServices.value[serviceKey].meta_slug === route.params.slug) {
+                 service.value = unfilteredServices.value[serviceKey];
               }
             }
           }
           if (key == "pages") {
             unfilteredPages.value = data[key];
-            for (let serviceKey in data[key]) {
-              if(data[key][serviceKey].slug === route.params.slug) {
-                 page.value = data[key][serviceKey];
+            for (let serviceKey in unfilteredPages.value) {
+              if(unfilteredPages.value[serviceKey].slug === route.params.slug) {
+                 page.value = unfilteredPages.value[serviceKey];
               }
-              pages.value.push(data[key][serviceKey]);
+              pages.value.push(unfilteredPages.value[serviceKey]);
             }
           }
           if (key == 'settings') {
             settings.value = data[key]
           }
+        }
+        
+        if(page.value) {
+          console.log('page.value -> ',page.value)
+          metaData.value.title = page.value.meta_title;
+          metaData.value.description = page.value.meta_description;
+          metaData.value.ogTitle = page.value.meta_title;
+          metaData.value.ogDescription = page.value.meta_description;
+          metaData.value.ogType = page.value.meta_title;
+          metaData.value.ogImage = "/images/resource/video.jpg";
+          metaData.value.twitterCard = "summary_large_image";
+          metaData.value.twitterTitle = page.value.meta_title;
+          metaData.value.twitterDescription = page.value.meta_description;
+        }
+
+        if(service.value) {
+          console.log('service.value -> ',service.value)
+
+          metaData.value.title = service.value.meta_title;
+          metaData.value.description = service.value.meta_description;
+          metaData.value.ogTitle = service.value.meta_title;
+          metaData.value.ogDescription = service.value.meta_description;
+          metaData.value.ogImage = "/images/resource/video.jpg";
+          metaData.value.twitterCard = "summary_large_image";
+          metaData.value.twitterTitle = service.value.meta_title;
+          metaData.value.twitterDescription = service.value.meta_description;
         }
       }
     });
@@ -160,16 +206,47 @@ const setCurrentTab = (index) => {
   tab.value = index
 }
 
-useSeoMeta({
-  title: `${ service.value ? service.value.meta_title : page.value.title } - Yaseo`,
-  ogTitle: `${ service.value ? service.value.meta_title : page.value.title } - Yaseo`,
-  description: `${ service.value ? service.value.meta_description: page.value.meta_description }`,
-  ogDescription: `${ service.value ? service.value.meta_description: page.value.meta_description }`,
-  ogImage: "/images/resource/video.jpg",
-  twitterCard: "summary_large_image",
-  twitterTitle: `${ service.value ? service.value.meta_title : page.value.title } - Yaseo`,
-  twitterDescription: `${ service.value ? service.value.meta_description: page.value.meta_description }`,
-});
+// useHead({
+//   title: `${ service.value ? service.value.meta_title : page.value.meta_title } - Yaseo`,
+//   meta: [
+//   { property: 'og:title', content: `${ service.value ? service.value.meta_title : page.value.meta_title } - Yaseo` }
+//   ]
+// })
+
+
+
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/${route.params.slug}` }
+  ]
+})
+
+
+// useServerSeoMeta({
+//   title: () => `${ metaData.value.title }`,
+//   ogTitle: () => `${ metaData.value.ogTitle }`,
+//   description: () => `${ metaData.value.description }`,
+//   ogDescription: () =>  `${ metaData.value.ogDescription }`,
+//   ogImage: () => `${metaData.value.ogImage}`,
+//   twitterCard: () => `${metaData.value.twitterCard}`,
+//   twitterTitle: () => `${ metaData.value.twitterTitle }`,
+//   twitterDescription: () => `${ metaData.value.twitterDescription }`,
+// });
 
 
 </script>

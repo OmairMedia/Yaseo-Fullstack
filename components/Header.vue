@@ -19,8 +19,7 @@
 
               <div class="top-right">
                 <ul class="useful-links">
-                  <li><nuxt-link to="/privacy-policy">Privacy Policy</nuxt-link></li>
-                  <li><nuxt-link to="/trust-safety">Trust & Safety</nuxt-link></li>
+                  <li v-for="(page,index) in pages" :key="index"><nuxt-link :to="page.slug">{{ page.title }}</nuxt-link></li>
                   <li><nuxt-link to="/contact-us">Contact Us</nuxt-link></li>
                 </ul>
                 <ul class="social-icon-one">
@@ -51,7 +50,7 @@
                 <div class="logo-box">
                   <div class="logo">
                     <nuxt-link to="/"
-                      ><img src="https://yaseo.co.uk/images/logo-black.svg" alt="Yaseo" title="Yaseo" height="100"
+                      ><img src="/images/logo-black.svg" alt="Yaseo" title="Yaseo" height="100"
                     /></nuxt-link>
                   </div>
                 </div>
@@ -60,26 +59,13 @@
                 <div class="nav-outer">
                   <nav class="nav main-menu">
                     <ul class="navigation">
-                      <li class="">
-                        <nuxt-link to="/digital-solutions">About</nuxt-link>
-                      </li>  
-                      <li class="dropdown">
-                        <nuxt-link to="/digital-services">Services</nuxt-link>
-                        <ul>
+                      <li v-for="(navlink,index) in settings.headerNavLinks" :key="index" :class="{'dropdown': navlink.link === '/digital-services'}">
+                        <nuxt-link :to="navlink.link">{{ navlink.name }}</nuxt-link>
+                        <ul v-if="navlink.link === '/digital-services'">
                           <li v-for="(service,index) in services" :key="index"><nuxt-link :to="'/' + service.meta_slug">{{ service.name }}</nuxt-link></li>
-                          <!-- <li><nuxt-link to="/website-design-services">Web Design</nuxt-link></li>
-                          <li><nuxt-link to="/website-developers">Web Development</nuxt-link></li>
-                          <li><nuxt-link to="/mobile-apps">Mobile Apps</nuxt-link></li>
-                          <li><nuxt-link to="/seo-services">SEO</nuxt-link></li>
-                          <li><nuxt-link to="/digital-marketing">Digital Marketing</nuxt-link></li>
-                          <li><nuxt-link to="/content-marketing">Content Marketing</nuxt-link></li>
-                          <li><nuxt-link to="/social-media-marketing">Social Media Marketing</nuxt-link></li> -->
                         </ul>
-                      </li>
-                      <li class="">
-                        <nuxt-link to="/blogs">Blog</nuxt-link>
-                      </li>
-                      <li><nuxt-link href="/contact-us">Contact Us</nuxt-link></li>
+                      </li>  
+                    
                     </ul>
                   </nav>
 
@@ -108,7 +94,7 @@
               <div class="upper-box">
                 <div class="nav-logo">
                   <nuxt-link to="/"
-                    ><img src="https://yaseo.co.uk/images/logo-white.svg" alt="" title=""
+                    ><img src="/images/logo-white.svg" alt="" title=""
                   /></nuxt-link>
                 </div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
@@ -118,8 +104,7 @@
                 <!--Keep This Empty / Menu will come through Javascript-->
               </ul>
               <ul class="navigation-2">
-                <li class="special-link"><nuxt-link to="/privacy-policy">Privacy Policy</nuxt-link></li>
-                <li class="special-link"><nuxt-link to="/trust-safety">Trust & Safety</nuxt-link></li>
+                <li class="special-link" v-for="(page,index) in pages" :key="index"><nuxt-link :to="page.slug">{{ page.title }}</nuxt-link></li>
               </ul>
               <ul class="contact-list-one">
                 <li>
@@ -143,9 +128,9 @@
                   <div class="contact-info-box">
                     <span class="icon lnr-icon-clock"></span>
                     <span class="title">Opening Hours</span>
-                    Mon-Fri 9 am - 6 pm
+                     {{ settings.timing1 }}
                     <br>
-                    Sat 11 am - 2 pm
+                    {{ settings.timing2 }}
                   </div>
                 </li>
                 <li>
@@ -185,7 +170,7 @@
                 <!--Logo-->
                 <div class="logo">
                   <nuxt-link to="/" title=""
-                    ><img src="https://yaseo.co.uk/images/logo-black.svg" alt="" title=""
+                    ><img src="/images/logo-black.svg" alt="" title=""
                   /></nuxt-link>
                 </div>
 
@@ -219,7 +204,8 @@ const nuxtApp = useNuxtApp();
 const settings = ref({})
 const unfilteredServices = ref([])
 const services = ref([])
-
+const unfilteredPages = ref([])
+const pages = ref([])
 
 const getFullData = () => {
   try {
@@ -238,7 +224,16 @@ const getFullData = () => {
             }
            
           }
+          if(key == 'pages') {
+            unfilteredPages.value = data[key];
+            for(let serviceKey in data[key]) {
+              pages.value.push(data[key][serviceKey])
+            }
+           
+          }
         }
+
+        pages.value.splice(2)
       }
     })
   } catch (err) {

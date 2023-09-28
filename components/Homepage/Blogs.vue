@@ -1,6 +1,6 @@
 <template>
       <!-- News Section -->
-      <section class="news-section" v-if="blogs">
+      <section class="news-section" >
         <div class="auto-container">
           <div class="sec-title text-center">
             <span class="sub-title">News &amp; Articles</span>

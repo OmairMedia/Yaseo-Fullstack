@@ -25,7 +25,6 @@ export default defineNuxtConfig({
       ],
       script: [
         { src: '/js/jquery.js' },
-        { type:'text/javascript', src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', integrity:'sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', crossorigin: 'anonymous' },
         { type:'text/javascript', src: '//code.tidio.co/g74kcyco68owypkdkzneerwuln8q2lt2.js', async: true },
         { type:'text/javascript', src: 'https://www.googletagmanager.com/gtag/js?id=UA-160840514-1', async: true },
         { type:'text/javascript', src: '/js/gtag.js'},

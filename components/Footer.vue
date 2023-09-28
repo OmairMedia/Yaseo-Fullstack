@@ -53,17 +53,8 @@
             <div class="footer-widget links-widget">
               <h6 class="widget-title">Explore</h6>
               <ul class="user-links">
-                <li>
-                  <nuxt-link to="/digital-solutions">About Us</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link to="/blogs">Blog</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link to="/case-studies">Case Studies</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link to="/contact-us">Contact</nuxt-link>
+                <li v-for="(navlink,index) in settings.footerNavLinks" :key="index">
+                  <nuxt-link :to="navlink.link">{{ navlink.name }}</nuxt-link>
                 </li>
               </ul>
             </div>
@@ -134,14 +125,6 @@
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const settings = ref({});
-const projects = ref([
-  {
-    name: 'Mowana',
-    slug: 'mowana',
-    image: '/images/cases/mowana/logo-10.jpg',
-    category: 'branding'
-  }
-]);
 const unfilteredCategories = ref([]);
 const categories = ref([]);
 
@@ -158,15 +141,12 @@ const getFullData = () => {
             settings.value = data[key]
           }
           if(key == 'categories') {
-            console.log('key -> ',key)
             unfilteredCategories.value = data[key]
-            for(let catKey in unfilteredCategories) {
-              categories.value.push(unfilteredCategories[catKey])
+            for(let catKey in unfilteredCategories.value) {
+              categories.value.push(unfilteredCategories.value[catKey])
             }
           }
         }
-
-       
       }
     })
   } catch (err) {

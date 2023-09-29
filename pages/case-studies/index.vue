@@ -60,18 +60,6 @@
 
 
 <script setup>
-
-useSeoMeta({
-  title: 'Digital Marketing | Web Design Company London - Yaseo',
-  ogTitle: 'Digital Marketing | Web Design Company London - Yaseo',
-  description: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.',
-  ogDescription: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.',
-  ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
-  twitterCard: 'summary_large_image',
-  twitterTitle: 'Digital Marketing | Web Design Company London - Yaseo',
-  twitterDescription: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.'
-})
-
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const settings = ref({})
@@ -133,5 +121,45 @@ const getFullData = () => {
   });
 }
 
-const {data, pending, error} = await useAsyncData("get-data-for-index", () => getFullData());
+const {data, pending, error} = await useAsyncData("get-data-for-case-categories", () => getFullData());
+
+
+
+const metaData = ref({
+  title: `Case Studies | Our Previous Projects | Yaseo`,
+  description: 'Yaseo worked with numerous clients in all these years, Yaseo has never failed to fullfill requirements of their project.',
+  ogTitle: `Case Studies | Our Previous Projects | Yaseo`,
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/case-studies`,
+  ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  ogDescription: 'Yaseo worked with numerous clients in all these years, Yaseo has never failed to fullfill requirements of their project.',
+  twitterCard: 'summary_large_image',
+  twitterTitle: `Case Studies | Our Previous Projects | Yaseo`,
+  twitterDescription: 'Yaseo worked with numerous clients in all these years, Yaseo has never failed to fullfill requirements of their project.',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
+
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/case-studies` }
+  ]
+})
+
 </script>

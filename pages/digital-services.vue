@@ -54,22 +54,6 @@
 </template>
 
 <script setup>
-
-
-useSeoMeta({
-  title: "Web Development | Branding | Digital Marketing - Yaseo",
-  ogTitle: "Web Development | Branding | Digital Marketing - Yaseo",
-  description:
-    "Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!",
-  ogDescription:
-    "Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!",
-  ogImage: "https://yaseo.co.uk/images/resource/video.jpg",
-  twitterCard: "summary_large_image",
-  twitterTitle: "Web Development | Branding | Digital Marketing - Yaseo",
-  twitterDescription:
-    "Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!",
-});
-
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const services = ref([]);
@@ -84,10 +68,46 @@ const getServices = () => {
     }
   });
 };
-
+const metaData = ref({
+  title: 'Web Development | Branding | Digital Marketing - Yaseo',
+  description: 'Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!',
+  ogTitle: 'Web Development | Branding | Digital Marketing - Yaseo',
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/digital-services`,
+  ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  ogDescription: 'Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Web Development | Branding | Digital Marketing - Yaseo',
+  twitterDescription: 'Looking for designers, developers, digital marketers? We at YASEO provide afforable and result oriented solutions to our customers on time!',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
 const { data, pending, error } = await useAsyncData(
   "get-data-for-services",
   () => getServices()
 );
+
+
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/digital-services` }
+  ]
+})
 
 </script>

@@ -19,7 +19,7 @@
 
               <div class="top-right">
                 <ul class="useful-links">
-                  <li v-for="(page,index) in pages" :key="index"><nuxt-link :to="page.slug">{{ page.title }}</nuxt-link></li>
+                  <li v-for="(page,index) in pages" :key="index"><nuxt-link :to="`/${page.slug}`">{{ page.title }}</nuxt-link></li>
                   <li><nuxt-link to="/contact-us">Contact Us</nuxt-link></li>
                 </ul>
                 <ul class="social-icon-one">
@@ -65,7 +65,6 @@
                           <li v-for="(service,index) in services" :key="index"><nuxt-link :to="'/' + service.meta_slug">{{ service.name }}</nuxt-link></li>
                         </ul>
                       </li>  
-                    
                     </ul>
                   </nav>
 
@@ -104,7 +103,7 @@
                 <!--Keep This Empty / Menu will come through Javascript-->
               </ul>
               <ul class="navigation-2">
-                <li class="special-link" v-for="(page,index) in pages" :key="index"><nuxt-link :to="page.slug">{{ page.title }}</nuxt-link></li>
+                <li class="special-link" v-for="(page,index) in pages" :key="index"><nuxt-link :to="`/${page.slug}`">{{ page.title }}</nuxt-link></li>
               </ul>
               <ul class="contact-list-one">
                 <li>
@@ -232,7 +231,6 @@ const getFullData = () => {
            
           }
         }
-
         pages.value.splice(2)
       }
     })

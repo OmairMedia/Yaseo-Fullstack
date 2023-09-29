@@ -207,20 +207,6 @@
 </template>
 
 <script setup>
-useSeoMeta({
-  title: "Digital Marketing | Web Design Company London - Yaseo",
-  ogTitle: "Digital Marketing | Web Design Company London - Yaseo",
-  description:
-    "The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.",
-  ogDescription:
-    "The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.",
-  ogImage: "https://yaseo.co.uk/images/resource/video.jpg",
-  twitterCard: "summary_large_image",
-  twitterTitle: "Digital Marketing | Web Design Company London - Yaseo",
-  twitterDescription:
-    "The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.",
-});
-
 import { onValue, ref as databaseRef } from "firebase/database";
 const nuxtApp = useNuxtApp();
 const settings = ref({});
@@ -280,6 +266,21 @@ const cases = ref([
 ]);
 const unfilteredCases = ref([]);
 const section1 = ref({});
+const metaData = ref({
+  title: 'Digital Solutions | Digital Marketing Solutions UK - YASEO',
+  description: 'We deliver digital solutions tailored to your business. Working together to develop solutions.That will take your business to new heights.',
+  ogTitle: 'Digital Solutions | Digital Marketing Solutions UK - YASEO',
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/digital-solutions`,
+  ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  ogDescription: 'We deliver digital solutions tailored to your business. Working together to develop solutions.That will take your business to new heights.',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Digital Solutions | Digital Marketing Solutions UK - YASEO',
+  twitterDescription: 'We deliver digital solutions tailored to your business. Working together to develop solutions.That will take your business to new heights.',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
 
 const getFullData = () => {
   try {
@@ -343,8 +344,30 @@ const getFullData = () => {
     console.log("err -> ", err);
   }
 };
-
 const { data, pending, error } = await useAsyncData("get-data-for-aboutus", () =>
   getFullData()
 );
+
+
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/digital-solutions` }
+  ]
+})
+
 </script>

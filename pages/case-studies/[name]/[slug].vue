@@ -104,6 +104,9 @@ const casedata = ref({
   website: ""
 });
 const unfilteredCases = ref([])
+
+
+
 import { onValue, ref as databaseRef } from "firebase/database";
 const getFullData = () => {
   const allDataRef = databaseRef(nuxtApp.$database, `/cases`);
@@ -116,14 +119,40 @@ const getFullData = () => {
 
 const { data, pending, error } = await useAsyncData("get-data-for-case", getFullData());
 
-useSeoMeta({
-  title: 'Digital Marketing | Web Design Company London - Yaseo',
-  ogTitle: 'Digital Marketing | Web Design Company London - Yaseo',
-  description: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.',
-  ogDescription: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.',
+const metaData = ref({
+  title: `Case Studies | ${route.params.name} | ${route.params.slug} - Yaseo`,
+  description: 'Mowana client is a great example of our success, YASEO handled the project in best way possible.',
+  ogTitle: `Case Studies | ${route.params.name} | ${route.params.slug} - Yaseo`,
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/case-studies/${route.params.name}/${route.params.slug}`,
   ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  ogDescription: 'Mowana client is a great example of our success, YASEO handled the project in best way possible.',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Digital Marketing | Web Design Company London - Yaseo',
-  twitterDescription: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.'
+  twitterTitle: `Case Studies | ${route.params.name} | ${route.params.slug} - Yaseo`,
+  twitterDescription: 'Mowana client is a great example of our success, YASEO handled the project in best way possible.',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
+
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/case-studies/${route.params.name}/${route.params.slug}` }
+  ]
 })
 </script>

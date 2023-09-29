@@ -4,9 +4,7 @@
      <section
         v-if="blog"
         class="page-title"
-        style="
-          background-image: url(https://yaseo.co.uk/images/background/page-title.jpg);
-        "
+        style="background-image: url(https://yaseo.co.uk/images/background/page-title.jpg);"
       >
         <div class="auto-container">
           <div class="title-outer">
@@ -43,7 +41,6 @@
                       <a><i class="fas fa-user-circle"></i> {{ blog.author }}</a>
                     </li>
                   </ul>
-
                   <p v-html="blog.description"></p>
                 </div>
               </div>
@@ -66,7 +63,7 @@
                             ><i class="fas fa-user-circle"></i>{{ rpost.author }}</span
                           >
                           <nuxt-link
-                            :to="`blogs/${rpost.slug}`"
+                            :to="`/blogs/${rpost.slug}`"
                             >{{ rpost.title }}</nuxt-link
                           >
                         </h3>
@@ -92,6 +89,21 @@ const nuxtApp = useNuxtApp();
 const blog = ref(null);
 const blogs = ref([]);
 const recentPosts = ref([]);
+const metaData = ref({
+  title: `Blog | Yaseo Business Blogs | Yaseo`,
+  description: 'Yaseo blogs provides visitors on help Branding, logo design and branding ideas UX and UI blog. SEO tips and ideas are beneficial for visitors',
+  ogTitle: `Blog | Yaseo Business Blogs | Yaseo`,
+  ogType: 'article',
+  ogUrl: `https://yaseo.co.uk/blogs/${route.params.slug}`,
+  ogImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  ogDescription: 'Yaseo blogs provides visitors on help Branding, logo design and branding ideas UX and UI blog. SEO tips and ideas are beneficial for visitors',
+  twitterCard: 'summary_large_image',
+  twitterTitle: `Blog | Yaseo Business Blogs | Yaseo`,
+  twitterDescription: 'Yaseo blogs provides visitors on help Branding, logo design and branding ideas UX and UI blog. SEO tips and ideas are beneficial for visitors',
+  twitterSite: '@Yaseo_Digital',
+  twitterImage: 'https://yaseo.co.uk/images/resource/video.jpg',
+  twitterCreator: '@Yaseo_Digital',
+})
 
 const getBlog = () => {
   blogs.value = [];
@@ -111,20 +123,40 @@ const getBlog = () => {
         return dateB - dateA
       })  
       recentPosts.value.splice(5)
+
+      if(blog.value) {
+        metaData.value.title = blog.value.meta_title
+        metaData.value.description = blog.value.meta_description
+        metaData.value.ogTitle = blog.value.meta_title
+        metaData.value.ogImage = blog.value.image
+        metaData.value.ogDescription = blog.value.meta_description
+        metaData.value.twitterTitle = blog.value.meta_title
+        metaData.value.twitterDescription = blog.value.meta_description
+      }
     }
   });
 };
 
-useAsyncData("get-blog-data", () => getBlog());
+useAsyncData("get-blog-data-single", () => getBlog());
 
-useSeoMeta({
-  title: () => `${blog.meta_title}`,
-  ogTitle: () => `${blog.meta_title}`,
-  description: () => `${blog.meta_description}`,
-  ogDescription: () => `${blog.meta_description}`,
-  ogImage: () => `${blog.meta_description}`,
-  twitterCard: "summary_large_image",
-  twitterTitle: () => `${blog.meta_title}`,
-  twitterDescription: () => `${blog.meta_description}`,
-});
+useHead({
+  title: `${metaData.value.title}`,
+  meta: [
+    { name: 'description', content: `${metaData.value.description}` },
+    { name: 'og:title', content: `${metaData.value.ogTitle}` },
+    { name: 'og:type', content: `${metaData.value.ogType}` },
+    { name: 'og:url', content: `${metaData.value.ogUrl}` },
+    { name: 'og:image', content: `${metaData.value.ogImage}` },
+    { name: 'og:description', content: `${metaData.value.ogDescription}` },
+    { name: 'twitter:card', content: `${metaData.value.twitterCard}` },
+    { name: 'twitter:title', content: `${metaData.value.twitterTitle}` },
+    { name: 'twitter:description', content: `${metaData.value.twitterDescription}` },
+    { name: 'twitter:site', content: `${metaData.value.twitterSite}` },
+    { name: 'twitter:image', content: `${metaData.value.twitterImage}` },
+    { name: 'twitter:creator', content: `${metaData.value.twitterCreator}` },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://yaseo.co.uk/blogs/${route.params.slug}` }
+  ]
+})
 </script>

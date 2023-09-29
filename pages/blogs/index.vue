@@ -24,7 +24,7 @@
         <div class="container pb-90">
           <div class="">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+              <input type="text" class="form-control" v-model="query" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
               <button class="btn btn-outline-secondary" @click="handleSearch" type="button" id="button-addon2">Submit</button>
             </div>
           </div>
@@ -107,6 +107,7 @@ import { onValue, ref as databaseRef } from "firebase/database";
 import moment from "moment";
 const nuxtApp = useNuxtApp();
 const blogs = ref([]);
+const query = ref("");
 let total = ref(0);
 let page = ref(1);
 let per_page = ref(2)
@@ -120,17 +121,17 @@ const getAllBlogs = () => {
     const blogsRef = databaseRef(nuxtApp.$database, "/blogs");
     onValue(blogsRef, (snapshot) => {
       if (snapshot.val()) {
-
+      let allblogs = [];  
       snapshot.forEach((x) => {
-          blogs.value.push(x.val());
+         allblogs.push(x.val());
       });
 
       // Pagination parameters
-      const perPage = per_page.value;
-      const currentPage = page.value;
-      const startIndex = (currentPage - 1) * perPage;
-      const endIndex = startIndex + perPage;
-      blogs.value.sort((a, b) => {
+      // const perPage = per_page.value;
+      // const currentPage = page.value;
+      // const startIndex = (currentPage - 1) * perPage;
+      // const endIndex = startIndex + perPage;
+      allblogs.sort((a, b) => {
         let adate = moment(a.date).valueOf()
         let bdate = moment(b.date).valueOf()
         // let total = adate - bdate;
@@ -139,46 +140,30 @@ const getAllBlogs = () => {
       // Slice the array to get the current page's data
      
       // Set the data and pagination values
-      total.value = blogs.value.length;
-      from.value = startIndex + 1;
-      to.value = Math.min(endIndex, total.value);
-      current_page.value = currentPage;
-      last_page.value = Math.ceil(total.value / perPage);
+      // total.value = blogs.value.length;
+      // from.value = startIndex + 1;
+      // to.value = Math.min(endIndex, total.value);
+      // current_page.value = currentPage;
+      // last_page.value = Math.ceil(total.value / perPage);
 
-      // const currentBlogs = blogs.value.slice(startIndex, endIndex);
+      if (query.value) {
+        const lowSearch = String(query.value).toLowerCase();
+        allblogs = allblogs.filter((obj) => {
+          return Object.values(obj).some((val) =>
+            String(val).toLowerCase().includes(lowSearch)
+          );
+        });
+      }
 
-      // Logging for debugging
-      
-        // total = blogs.value.length
-        // from.value = (page.value - 1) * per_page.value + 1;
-        // to.value = from.value + per_page.value <= total ? from.value + per_page.value - 1 : total;
-        // current_page.value = page.value;
-        // last_page.value = total % per_page.value == 0 ? total / per_page.value : Math.floor(total / per_page.value) + 1;
-        // blogs.value.sort((a, b) =>
-        //     a['date'] > b['date'] ? 1 : b['date'] > a['date'] ? -1 : 0
-        // );
-        // blogs.value = blogs.value.slice(from.value - 1, to.value);
-        console.log('page -> ',page.value);
+      blogs.value = allblogs
 
-        // console.log('total -> ',total);
-        // console.log('from.value -> ',from.value);
-        // console.log('to.value -> ',to.value);
-        // console.log('current_page.value -> ',current_page.value);
-        // console.log('last_page.value -> ',last_page.value);
       }
     });
   
-    // if (search) {
-    //   var lowSearch = search.toLowerCase();
-    //   users = users.filter((obj) => {
-    //     console.log(obj);
-    //     return Object.values(obj).some((val) =>
-    //       String(val).toLowerCase().includes(lowSearch)
-    //     );
-    //   });
-    // }
+    
 
 };
+
 const { pending, error} = await useAsyncData("get-all-blogs", () => getAllBlogs());
 
 const nextPage = async () => {
@@ -203,7 +188,8 @@ const previousPage = async () => {
 }
 
 const handleSearch = () => {
-  
+  console.log('query -> ',query.value)
+  getAllBlogs()
 }
 
 const metaData = ref({

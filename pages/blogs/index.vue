@@ -156,7 +156,6 @@ const getAllBlogs = () => {
       }
 
       blogs.value = allblogs
-
       }
     });
   
@@ -164,7 +163,7 @@ const getAllBlogs = () => {
 
 };
 
-const { pending, error} = await useAsyncData("get-all-blogs", () => getAllBlogs());
+const { pending, error, refresh } = await useAsyncData("get-all-blogs", () => getAllBlogs());
 
 const nextPage = async () => {
   if (page.value < last_page.value) {
@@ -189,7 +188,7 @@ const previousPage = async () => {
 
 const handleSearch = () => {
   console.log('query -> ',query.value)
-  getAllBlogs()
+  refresh()
 }
 
 const metaData = ref({
@@ -228,4 +227,5 @@ useHead({
     { rel: 'canonical', href: `https://yaseo.co.uk/blogs` }
   ]
 })
+
 </script>

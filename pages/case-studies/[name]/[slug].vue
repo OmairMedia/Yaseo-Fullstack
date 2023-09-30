@@ -113,11 +113,14 @@ const getFullData = () => {
   onValue(allDataRef, (snapshot) => {
     if (snapshot.val()) {
       console.log('snapshot.val() -> ', snapshot.val());
+      snapshot.forEach((x) => {
+        cases.value.push(x.val())
+      })
     }
   });
 }
 
-const { data, pending, error } = await useAsyncData("get-data-for-case", getFullData());
+const { data, pending, error } = await useAsyncData("get-data-for-case", () => getFullData());
 
 const metaData = ref({
   title: `Case Studies | ${route.params.name} | ${route.params.slug} - Yaseo`,

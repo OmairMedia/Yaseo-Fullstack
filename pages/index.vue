@@ -271,6 +271,7 @@ const getFullData = () => {
     video.value = {}
     categories.value = [];
     cases.value = [];
+    section1.value = {};
     technologies.value = [];
     const allDataRef = databaseRef(nuxtApp.$database, "/");
     onValue(allDataRef, (snapshot) => {
@@ -306,8 +307,8 @@ const getFullData = () => {
           }
           if (key == "homepage") {
             unfilteredTestimonials.value = data[key].testimonials;
-            video.value = unfilteredTestimonials.value.video;
-            section1.value = unfilteredTestimonials.value.section1;
+            video.value = data[key].video;
+            section1.value = data[key].section1;
             for (let serviceKey in unfilteredTestimonials.value) {
               testimonials.value.push(unfilteredTestimonials.value[serviceKey]);
             }

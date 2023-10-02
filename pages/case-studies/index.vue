@@ -22,10 +22,9 @@
     <!-- Gallery Section -->
     <section class="">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <!-- Project Block -->
-            <div class="project-block" v-for="(category,index) in categories" :key="index">
+        <div class="categories-container">
+           <!-- Project Block -->
+           <div class="project-block" v-for="(category,index) in categories" :key="index">
               <div class="inner-box">
                 <div class="image-box">
                   <figure class="image">
@@ -50,7 +49,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </section>
@@ -163,3 +161,19 @@ useHead({
 })
 
 </script>
+
+
+<style scoped>
+.categories-container {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.project-block {
+  width: 300px;
+  height: 200px;
+}
+</style>

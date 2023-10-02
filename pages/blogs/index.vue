@@ -22,12 +22,12 @@
       <!-- News Section -->
       <section class="bg-silver-light" v-if="blogs">
         <div class="container pb-90">
-          <div class="">
+          <!-- <div class="">
             <div class="input-group mb-3">
               <input type="text" class="form-control" v-model="query" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
               <button class="btn btn-outline-secondary" @click="handleSearch" type="button" id="button-addon2">Submit</button>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <!-- Seo For Accountants 11 Aug, 2023 -->
             <div 

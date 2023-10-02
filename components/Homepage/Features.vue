@@ -16,6 +16,10 @@ const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 const section1 = ref(props.section1);
+
+onMounted(() => {
+  console.log('section1-> ',section1.value)
+})
 </script>
 <template>
     <!-- Features Section -->

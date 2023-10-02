@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Start main-content -->
-    <section class="page-title" style="background-image: url(/images/cases/mowana/final/banner.png)">
+    <section class="page-title" style="background-image: url(/images/background/page-title.jpg)">
       <div class="auto-container">
         <div class="title-outer">
-          <h1 class="title">Mowana</h1>
+          <h1 class="title">{{ casedata.name }}</h1>
           <ul class="page-breadcrumb">
             <li><nuxt-link to="/">Home</nuxt-link></li>
             <li><nuxt-link to="/case-studies">Case Studies</nuxt-link></li>
@@ -114,8 +114,12 @@ const getFullData = () => {
     if (snapshot.val()) {
       console.log('snapshot.val() -> ', snapshot.val());
       snapshot.forEach((x) => {
+        if(x.val().slug == route.params.slug) {
+          casedata.value = x.val()
+        }
         cases.value.push(x.val())
       })
+
     }
   });
 }

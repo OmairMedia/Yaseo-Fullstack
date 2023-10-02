@@ -23,16 +23,17 @@
     <!-- Gallery Section -->
     <section class="">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <!-- Project Block -->
-            <div class="project-block" v-for="(category,index) in cases" :key="index">
+        <div class="categories-container">
+           <!-- Project Block -->
+           <div class="project-block" v-for="(category,index) in cases" :key="index">
               <div class="inner-box">
                 <div class="image-box">
                   <figure class="image">
                     <nuxt-link :to="`/case-studies/${route.params.name}/${category.slug}`">
                       <img
                         :src="category.image"
+                        height="200"
+                        width="300"
                         alt=""
                     />
                   </nuxt-link>
@@ -51,7 +52,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </section>
@@ -92,8 +92,9 @@ const getFullData = () => {
         if(key == 'cases') {
           unfilteredCases.value = data[key];
           for(let serviceKey in unfilteredCases.value) {
-            if(unfilteredCases.value[serviceKey].category.includes(route.params.name)){
-               cases.value.push(unfilteredCases.value[serviceKey]) 
+            const check = unfilteredCases.value[serviceKey].category.includes(route.params.name);
+            if(check) {
+              cases.value.push(unfilteredCases.value[serviceKey]) 
             }
           }
         }
@@ -103,7 +104,6 @@ const getFullData = () => {
             categories.value.push(unfilteredCategories.value[serviceKey])
           }
         }
-
       }
     }
   });
@@ -149,4 +149,22 @@ useHead({
   ]
 })
 
+onMounted(() => {
+  console.log('cases->',cases.value)
+})
 </script>
+
+<style scoped>
+.categories-container {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.project-block {
+  width: 300px;
+  height: 200px;
+}
+</style>

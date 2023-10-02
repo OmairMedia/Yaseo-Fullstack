@@ -16,11 +16,15 @@ const projects = ref(props.projects);
 const blogs = ref(props.blogs);
 const clients = ref(props.clients);
 const video = ref(props.video)
+
+onMounted(() => {
+  console.log('video -> ',video.value)
+})
 </script>
 
 <template>
         <!-- Banner Section -->
-        <section class="banner-section" v-if="video">
+        <section class="banner-section">
           <iframe :src="video.link" style="min-height: 700px;" class="homepage-video" autoplay muted loop>
           </iframe>
           <!-- <a class="volume-btn">

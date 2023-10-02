@@ -66,7 +66,7 @@
               <h6 class="widget-title">Case Studies</h6>
               <div class="widget-content">
                 <div class="outer clearfix">
-                  <figure class="image" v-for="(project,index) in categories" :key="index">
+                  <figure class="image" v-for="(project,index) in categories" :key="categories.id">
                     <nuxt-link :to="`/case-studies/${project.name}`"
                       ><img
                         :src="`${project.image}`"
@@ -133,6 +133,7 @@ const getFullData = () => {
     const allDataRef = databaseRef(nuxtApp.$database, "/");
     unfilteredCategories.value = [];
     categories.value = [];
+    settings.value = [];
     onValue(allDataRef, (snapshot) => {
       if (snapshot.val()) {
         const data = snapshot.val();
@@ -147,6 +148,7 @@ const getFullData = () => {
             }
           }
         }
+        categories.value.splice(3)
       }
     })
   } catch (err) {

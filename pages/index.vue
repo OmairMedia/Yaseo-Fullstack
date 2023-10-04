@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HomepageBanner
+    <LazyHomepageBanner
       :video="video"
       :settings="settings"
       :services="services"
@@ -9,7 +9,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageTagline
+    <LazyHomepageTagline
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -17,7 +17,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageFeatures
+    <LazyHomepageFeatures
       :section1="section1"
       :settings="settings"
       :services="services"
@@ -27,7 +27,7 @@
       :clients="clients"
     />
 
-    <HomepageServiceShowcase
+    <LazyHomepageServiceShowcase
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -35,7 +35,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageFunFacts
+    <LazyHomepageFunFacts
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -43,7 +43,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageWhatWeOffer
+    <LazyHomepageWhatWeOffer
       :video="video"
       :settings="settings"
       :services="services"
@@ -52,7 +52,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageFsb
+    <LazyHomepageFsb
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -69,7 +69,7 @@
       :blogs="blogs"
       :clients="clients"
     /> -->
-    <HomepageTestimonials
+    <LazyHomepageTestimonials
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -77,7 +77,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageProjects
+    <LazyHomepageProjects
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -86,7 +86,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageServicesList
+    <LazyHomepageServicesList
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -94,7 +94,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageVideoSection2
+    <LazyHomepageVideoSection2
       :video="video"
       :settings="settings"
       :services="services"
@@ -103,7 +103,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageContact
+    <LazyHomepageContact
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -111,7 +111,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageCallToAction
+    <LazyHomepageCallToAction
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -127,7 +127,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageClients
+    <LazyHomepageClients
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -135,7 +135,7 @@
       :blogs="blogs"
       :clients="clients"
     />
-    <HomepageMapSection
+    <LazyHomepageMapSection
       :settings="settings"
       :services="services"
       :testimonials="testimonials"
@@ -209,16 +209,40 @@ const services = ref([
   }
 ]);
 const unfilteredClients = ref([]);
-const clients = ref([]);
+const clients = ref([
+  {
+    id:"-NeHSHBPa4vZnUT4IVmh",
+    image:"https://firebasestorage.googleapis.com/v0/b/yaseo-fullstack.appspot.com/o/clients%2Fundefined_client_sparkle.png?alt=media&token=fc6e481d-1231-4647-b515-f7ddc215be96",
+    link:"https://sparklehomecleaning.co.uk/"
+  }
+]);
 const unfilteredProjects = ref([]);
 const projects = ref([]);
 const unfilteredTestimonials = ref([]);
-const testimonials = ref([]);
+const testimonials = ref([
+  {
+    answer:"We are a great agency",
+    designation:"Owner Joe Audio",
+    id:"-NcuCj-8hd9gcMbGsczf",
+    name:"Steve Hedge",
+    question:"Hey",
+    text:"This digital agency exceeded my expectations with its creative designs and exceptional customer service."
+  }
+]);
 const unfilteredVideo = ref([]);
 const video = ref({
   link: "https://firebasestorage.googleapis.com/v0/b/yaseo-fullstack.appspot.com/o/video%2Fhome-1.mp4?alt=media&token=51b94f8b-b909-40b8-84af-8054ff17ea9b"
 });
-const categories = ref([]);
+const categories = ref([
+  {
+    description:"Projects related to real estate business",
+    icon:"flaticon-color-sample",
+    id:"-NfhG-kZUbXI_fmP1-fi",
+    image:"https://firebasestorage.googleapis.com/v0/b/yaseo-fullstack.appspot.com/o/categories%2F-NfhG-kZUbXI_fmP1-fi_category_property.jpg?alt=media&token=dd308c68-08ae-478a-b833-ca7d0b883d22",
+    name:"Property",
+    slug:"property"
+  }
+]);
 const unfilteredCategories = ref([]);
 const cases = ref([
   {
@@ -240,9 +264,30 @@ const cases = ref([
   }
 ]);
 const unfilteredCases = ref([]);
-const section1 = ref({});
+const section1 = ref({
+  box_1_description:"We are well recognized for our outstanding work and commitment to excellence in the industry.",
+  box_1_icon:"trophy",
+  box_1_title:"200+ resources sitting on bench",
+  box_2_description:"We understand that quality work is essential to the success of any business.",
+  box_2_icon:"medal",
+  box_2_title:"Quality work",
+  box_3_description:"We are committed to delivering the highest level of service and ensuring that our clients are completely satisfied with our work.",
+  box_3_icon:"satisfaction",
+  box_3_title:"Satisfaction guarantee",
+  heading:"to grow and standout in this noisy digital world.",
+  highlighted_text_in_heading:"We help your brand"
+});
 const unfilteredTechnologies = ref([]);
-const technologies = ref([]);
+const technologies = ref([
+  {
+    answer:"We are a great agency",
+    designation:"Owner Joe Audio",
+    id:"-NcuCj-8hd9gcMbGsczf",
+    name:"Steve Hedge",
+    question:"Hey",
+    text:"This digital agency exceeded my expectations with its creative designs and exceptional customer service."
+  }
+]);
 const metaData = ref({
   title: 'Digital Marketing | Web Design Company London - Yaseo',
   description: 'The best designers and developers at affordable prices with effective graphic designs, online marketing, websites, mobile apps, branding.',

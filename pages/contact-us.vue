@@ -77,7 +77,8 @@
           <div class="col-xl-7 col-lg-6">
             <!-- Google Map HTML Codes -->
             <div class="map-section-contact">
-              <div class="" v-html="settings.findUsIframe"></div>
+              <div style="height: 400px; width: 400px;" v-html="settings.findUsIframe">
+            </div>
               <!-- <div class="auto-container">
                   <div class="info-box">
                     <div class="text">

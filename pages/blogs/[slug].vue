@@ -31,8 +31,8 @@
                     alt=""
                   />
                   <div class="blog-details__date">
-                    <span class="day">08</span>
-                    <span class="month">Nov</span>
+                    <span class="day">{{ getDay(blog.date) }}</span>
+                    <span class="month">{{ getMonths(blog.date) }}</span>
                   </div>
                 </div>
                 <div class="blog-details__content">
@@ -136,6 +136,27 @@ const getBlog = () => {
     }
   });
 };
+
+const getDay = (date) => {
+  let filterDate = String(date).split('/');
+  let newDate = moment({
+    day: filterDate[0],
+    month: filterDate[1],
+    year: filterDate[2]
+  })
+  console.log('newDate.date() -> ',newDate.day())
+  return newDate.day()
+}
+const getMonths = (date) => {
+  let filterDate = String(date).split('/');
+  let newDate = moment({
+    day: filterDate[0],
+    month: filterDate[1],
+    year: filterDate[2]
+  })
+  console.log('newDate -> ',newDate.format('MMMM'))
+  return newDate.format('MMMM')
+}
 
 useAsyncData("get-blog-data-single", () => getBlog());
 

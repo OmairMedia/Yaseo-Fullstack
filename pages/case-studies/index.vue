@@ -119,9 +119,7 @@ const getFullData = () => {
   });
 }
 
-const {data, pending, error} = await useAsyncData("get-data-for-case-categories", () => getFullData());
-
-
+const {data, pending, error} = await useAsyncData("get-data-for-all-case-categories", () => getFullData());
 
 const metaData = ref({
   title: `Case Studies | Our Previous Projects | Yaseo`,
@@ -159,7 +157,6 @@ useHead({
     { rel: 'canonical', href: `https://yaseo.co.uk/case-studies` }
   ]
 })
-
 </script>
 
 

@@ -63,5 +63,5 @@ const getServices = () => {
   });
 }
 
-const {data, pending, error} = await useAsyncData("get-data-for-services", () => getServices());
+const {data, pending, error} = await useAsyncData("get-data-for-single-services", () => getServices());
 </script>

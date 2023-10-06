@@ -109,7 +109,7 @@ const getFullData = () => {
   });
 }
 
-const {data, pending, error} = await useAsyncData("get-data-for-case-studies", () => getFullData());
+const {data, pending, error} = await useAsyncData("get-data-for-allcases", () => getFullData());
 
 
 const metaData = ref({

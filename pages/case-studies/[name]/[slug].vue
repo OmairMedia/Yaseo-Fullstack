@@ -124,7 +124,7 @@ const getFullData = () => {
   });
 }
 
-const { data, pending, error } = await useAsyncData("get-data-for-case", () => getFullData());
+const { data, pending, error } = await useAsyncData("get-data-for-single-case", () => getFullData());
 
 const metaData = ref({
   title: `Case Studies | ${route.params.name} | ${route.params.slug} - Yaseo`,

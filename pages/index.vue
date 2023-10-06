@@ -216,7 +216,6 @@ const clients = ref([
     link:"https://sparklehomecleaning.co.uk/"
   }
 ]);
-const unfilteredProjects = ref([]);
 const projects = ref([]);
 const unfilteredTestimonials = ref([]);
 const testimonials = ref([
@@ -229,7 +228,6 @@ const testimonials = ref([
     text:"This digital agency exceeded my expectations with its creative designs and exceptional customer service."
   }
 ]);
-const unfilteredVideo = ref([]);
 const video = ref({
   link: "https://firebasestorage.googleapis.com/v0/b/yaseo-fullstack.appspot.com/o/video%2Fhome-1.mp4?alt=media&token=51b94f8b-b909-40b8-84af-8054ff17ea9b"
 });

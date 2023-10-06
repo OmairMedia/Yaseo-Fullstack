@@ -142,9 +142,8 @@ const getFullData = () => {
             settings.value = data[key]
           }
           if(key == 'categories') {
-            unfilteredCategories.value = data[key]
-            for(let catKey in unfilteredCategories.value) {
-              categories.value.push(unfilteredCategories.value[catKey])
+            for(let catKey in data[key]) {
+              categories.value.push(data[key][catKey])
             }
           }
         }
